@@ -55,7 +55,9 @@ App({
         })
       },
       fail: function(res){
-        alert(res.data.msg);
+        wx.showToast({
+          title: '服务器错误',
+        })(res.data.msg);
       }
     })
   }
