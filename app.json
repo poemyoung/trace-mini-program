@@ -1,20 +1,21 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/baseuserinfo",
+    "pages/userinfo/userinfo"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "usingComponents": {
     "van-button": "@vant/weapp/button/index"
   },
   "sitemapLocation": "sitemap.json",
-    "useExtendedLib": {
-      "weui": true
-    } 
+  "useExtendedLib": {
+    "weui": true
+  }
 }
-
