@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/baseuserinfo",
     "pages/userinfo/userinfo"
   ],
   "window": {

@@ -1,2 +1,5 @@
 <!--pages/userinfo/userinfo.wxml-->
 <text>pages/userinfo/userinfo.wxml</text>
+<view>
+  <van-button type="primary">按钮</van-button>
+</view>

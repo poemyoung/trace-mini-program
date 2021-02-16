@@ -20,6 +20,8 @@ Page({
       key: 'userId',
       success(res){
         console.log(res)
+        //查询用户是否已经填报完成基本信息
+        //未填报信息进行页面跳转
       }
     })
     if (app.globalData.userInfo) {
