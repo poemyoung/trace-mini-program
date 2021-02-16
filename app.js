@@ -41,7 +41,8 @@ App({
     userId: "",
     urlBase: "http://localhost:8080",
     urlMap:{
-      login : "/miniapi/login"
+      login : "/miniapi/login",
+      userinfofill : "/miniapi/isfill"
     }
   },
   getUserInfo : function(data) {

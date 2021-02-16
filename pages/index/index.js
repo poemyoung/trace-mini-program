@@ -19,8 +19,23 @@ Page({
     wx.getStorage({
       key: 'userId',
       success(res){
-        console.log(res)
         //查询用户是否已经填报完成基本信息
+        wx.request({
+          url: app.globalData.urlBase + app.globalData.urlMap.userinfofill + "?userid=" + res.data,
+          success: function(res) {
+            let code = res.data.code;
+            if(code === 200006) {
+              wx.navigateTo({
+                url: '../userinfo/userinfo',
+              })
+            }
+          },
+          fail : function(res) {
+            wx.showToast({
+              title: '请求错误'
+            })
+          }
+        })
         //未填报信息进行页面跳转
       }
     })
