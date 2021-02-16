@@ -11,7 +11,15 @@
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index"
   },
   "sitemapLocation": "sitemap.json",
   "useExtendedLib": {

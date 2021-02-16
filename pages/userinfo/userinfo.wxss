@@ -1,1 +1,10 @@
 /* pages/userinfo/userinfo.wxss */
+.fill-container {
+  font-size: 1.5em;
+  margin-top: 75rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+.headline-container {
+  font-size: larger;
+}

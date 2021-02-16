@@ -5,7 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+      name : '',
+      cardId : '',
+      phone : '',
+      address : '',
+      detail_addr : '',
+      healthFlag : 0,
+      status_now : 0,
+      symptom : '',
+      body_heat : 36
   },
 
   /**
@@ -62,5 +70,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  onChange: function(event) {
+    console.log(event.detail)
+    console.log("data is " + this.data.name)
   }
 })
