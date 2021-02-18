@@ -21,6 +21,9 @@ Page({
       citys : [],
       counties : []
   },
+  locPickerChange : function() {
+
+  },
   showPopup : function() {
     this.setData({
       show : true
@@ -55,6 +58,7 @@ Page({
     //调用获取城市列表接口
     qqmapsdk.getCityList({
       success: function(res) {//成功后的回调
+        console.log(res);
         _this.setData({
           provinces : res.result[0],
           cities : res.result[1],
