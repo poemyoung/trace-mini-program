@@ -1,20 +1,18 @@
 <!--pages/userinfo/userinfo.wxml-->
 <view class="fill-container">
   <van-row>
-  <van-col span="10" class="headline-container">基本信息</van-col>
-  <view>
-  <van-cell-group>
-  <van-field
-    model:value="{{ name }}"
-    placeholder="请输入姓名"
-    required
-    clearable
-    label = "姓名"
-    border="{{ true }}"
-    bind:change="onChange"
-  />
-
-</van-cell-group>
-</view>
+    <van-col span="10" class="headline-container">基本信息</van-col>
+    <view>
+      <van-cell-group>
+        <van-field model:value="{{ name }}" placeholder="请输入姓名" required clearable label="姓名" border="{{ true }}"
+          bind:change="onChange" />
+        <van-field model:value="{{ cardId }}" placeholder="请输入身份证号" required clearable label="身份证号" border="{{ true }}"
+          bind:change="onChange" />
+        <van-field model:value="{{ phone }}" placeholder="请输入电话号码" required clearable label="电话" border="{{ true }}"
+          bind:change="onChange" />
+        <van-cell title="展示弹出层" is-link bind:click="showPopup" />
+        <van-popup show="{{ show }}" bind:close="onClose">内容</van-popup>
+      </van-cell-group>
+    </view>
   </van-row>
 </view>

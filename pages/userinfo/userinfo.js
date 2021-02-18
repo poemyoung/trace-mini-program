@@ -13,7 +13,16 @@ Page({
       healthFlag : 0,
       status_now : 0,
       symptom : '',
-      body_heat : 36
+      body_heat : 36,
+      show : false
+  },
+  showPopup : function() {
+    this.setData({
+      show : true
+    })
+  },
+  onClose() {
+    this.setData({ show: false });
   },
 
   /**
@@ -72,7 +81,6 @@ Page({
 
   },
   onChange: function(event) {
-    console.log(event.detail)
-    console.log("data is " + this.data.name)
+    
   }
 })
