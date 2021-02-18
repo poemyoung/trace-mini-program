@@ -19,10 +19,11 @@ Page({
       show : false,
       provinces : [],
       citys : [],
-      counties : []
+      counties : [],
+      columns: ['杭州', '宁波', '温州', '嘉兴', '湖州']
   },
-  locPickerChange : function() {
-
+  locPickerChange : function(event) {
+      console.log(event);
   },
   showPopup : function() {
     this.setData({
@@ -58,7 +59,7 @@ Page({
     //调用获取城市列表接口
     qqmapsdk.getCityList({
       success: function(res) {//成功后的回调
-        console.log(res);
+
         _this.setData({
           provinces : res.result[0],
           cities : res.result[1],
@@ -107,6 +108,5 @@ Page({
 
   },
   onChange: function(event) {
-    
   }
 })

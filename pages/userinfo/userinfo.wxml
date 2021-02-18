@@ -11,11 +11,17 @@
         <van-field model:value="{{ phone }}" placeholder="请输入电话号码" required clearable label="电话" border="{{ true }}"
           bind:change="onChange" />
         <van-cell title="展示弹出层" is-link bind:click="showPopup" />
-        <!-- <van-picker columns="{{ provinces }}" bind:change="locPickerChange" /> -->
+        <van-popup 
+        position="bottom" 
+        show="{{ show }}" bind:close="onClose">
+          <van-picker 
+          show-toolbar
+          title="选择城市"
+          columns="{{ provinces }}" 
+          bind:change="locPickerChange"
+          />
+        </van-popup>
       </van-cell-group>
     </view>
   </van-row>
-</view>
-<view wx:for="{{provinces}}">
-  {{index}}: {{item.name}}
 </view>
