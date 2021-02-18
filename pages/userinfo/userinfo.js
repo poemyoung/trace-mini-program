@@ -1,4 +1,7 @@
 // pages/userinfo/userinfo.js
+// 引入SDK核心类，js文件根据自己业务，位置可自行放置
+var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
+var qqmapsdk;
 Page({
 
   /**
@@ -29,7 +32,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    qqmapsdk = new QQMapWX({
+      key: 'RCEBZ-A3PK2-LGHU2-CWQKI-DVM23-NYBQ6'
+  });
   },
 
   /**
@@ -43,7 +48,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+      // 调用接口
+      qqmapsdk.search({
+        keyword: '酒店',
+        success: function (res) {
+            console.log(res);
+        },
+        fail: function (res) {
+            console.log(res);
+        },
+    complete: function (res) {
+        console.log(res);
+    }
+ });
+ 
   },
 
   /**
