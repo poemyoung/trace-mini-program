@@ -4,6 +4,11 @@
     "pages/logs/logs",
     "pages/userinfo/userinfo"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于追踪人员流动" 
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

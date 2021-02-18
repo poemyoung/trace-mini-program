@@ -3,7 +3,6 @@
 var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
 var qqmapsdk;
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -17,7 +16,10 @@ Page({
       status_now : 0,
       symptom : '',
       body_heat : 36,
-      show : false
+      show : false,
+      provinces : [],
+      citys : [],
+      counties : []
   },
   showPopup : function() {
     this.setData({
@@ -49,19 +51,21 @@ Page({
    */
   onShow: function () {
       // 调用接口
-      qqmapsdk.search({
-        keyword: '酒店',
-        success: function (res) {
-            console.log(res);
-        },
-        fail: function (res) {
-            console.log(res);
-        },
-    complete: function (res) {
-        console.log(res);
-    }
- });
- 
+      var _this = this;
+    //调用获取城市列表接口
+    qqmapsdk.getCityList({
+      success: function(res) {//成功后的回调
+        _this.setData({
+          provinces : res.result[0],
+          cities : res.result[1],
+          counties : res.result[2]
+        })
+      },
+      fail: function(error) {
+        console.error(error);
+      }
+    });
+
   },
 
   /**
