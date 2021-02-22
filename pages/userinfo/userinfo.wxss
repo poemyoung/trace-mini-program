@@ -8,3 +8,10 @@
 .headline-container {
   font-size: larger;
 }
+.radio-horizon {
+  display: flex;
+  flex-direction: row;
+}
+.radio {
+  margin-right: 100rpx;
+}

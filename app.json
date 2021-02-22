@@ -2,11 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/userinfo/userinfo"
+    "pages/userinfo/userinfo",
+    "pages/symptom/symtomcos"
   ],
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于追踪人员流动" 
+      "desc": "你的位置信息将用于追踪人员流动"
     }
   },
   "window": {

@@ -14,15 +14,32 @@ Page({
     detail_addr: '',
     healthFlag: 0,
     status_now: 0,
-    symptom: '',
+    symptom: '2',
     body_heat: 36,
     show: false,
     positions: [],
     columns: [],
-    pickerText : '您当前的居住地'
+    pickerText : '您当前的居住地',
+    detail_addr : '',
+    isSymtomData : 'none'
+  },
+  isSymtom : function(event) {
+    var _this = this;
+    this.setData({
+      symptom : event.detail
+    },function(){
+      if(_this.data.symptom == '1') {
+        _this.setData({
+          isSymtomData: 'block'
+        })
+      }else {
+        _this.setData({
+          isSymtomData: 'none'
+        })
+      }
+    })
   },
   locPickerChange: function (event) {
-    console.log(event);
     var _this = this;
     const {
       picker,
@@ -97,7 +114,6 @@ Page({
     qqmapsdk.getCityList({
       success: function (res) { //成功后的回调
         // 设置counties为多列数组
-        console.log(res)
         let ps = [];
         for (let i in res.result[0]) {
           // 设置省

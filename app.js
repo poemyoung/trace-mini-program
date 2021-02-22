@@ -39,7 +39,7 @@ App({
   globalData: {
     userInfo: null,
     userId: "",
-    urlBase: "http://localhost:8080",
+    urlBase: "http://8.129.121.171:8080",
     urlMap:{
       login : "/miniapi/login",
       userinfofill : "/miniapi/isfill"
