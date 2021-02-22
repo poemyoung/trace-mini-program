@@ -25,7 +25,7 @@
           />
         </van-popup>
         <van-field model:value="{{ detail_addr }}" placeholder="填写城市内的详细地址"  clearable label="详细地址" border="{{ true }}"
-          bind:change="onChange" />
+          bind:change="detailAddrChange" />
           <van-col span="10" class="headline-container">健康自查</van-col>
           <van-cell title='是否有异常症状' >
             <van-radio-group value="{{ symptom }}" bind:change="isSymtom" direction="horizontal" class="radio-horizon">

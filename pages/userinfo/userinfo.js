@@ -21,7 +21,26 @@ Page({
     columns: [],
     pickerText : '您当前的居住地',
     detail_addr : '',
-    isSymtomData : 'none'
+    isSymtomData : 'none',
+    province : '',
+    city : '',
+    county : ''
+  },
+  detailAddrChange : function(event) {
+      let key = event.detail;
+      var _this = this;
+      qqmapsdk.getSuggestion({
+        keyword : event.detail,
+        region : _this.data.city,
+        region_fix : 1,
+        policy : 1,
+        success : function(res) {
+          console.log(res);
+        },
+        fail : function(res) {
+          console.log(res)
+        }
+      })
   },
   isSymtom : function(event) {
     var _this = this;
@@ -68,7 +87,10 @@ Page({
   locPickerConfirm :function(event) {
     const {picker, value, index} = event.detail;
     this.setData({
-      pickerText : value[0] + ' ' + value[1] + ' ' + (value[2] == undefined ? '' : value[2])
+      pickerText : value[0] + ' ' + value[1] + ' ' + (value[2] == undefined ? '' : value[2]),
+      province : value[0],
+      city : value[1],
+      county : (value[2] == undefined ? '' : value[2])
     });
     this.setData({
       show : false
