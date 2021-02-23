@@ -15,3 +15,6 @@
 .radio {
   margin-right: 100rpx;
 }
+.van-cell-text {
+  
+}

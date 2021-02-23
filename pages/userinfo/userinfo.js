@@ -26,7 +26,33 @@ Page({
     city : '',
     county : '',
     hint_list : [],
-    addr_inp : true
+    addr_inp : true,
+    foreign : '2',
+    high_risk : '2',
+    confirm_patient : '2',
+    heat_error : ''
+  },
+  heatInp : function(event) {
+      if(event.detail < 34 || event.detail > 40 || !isNaN(event.detail)){
+          this.data.heat_error = '体温输入不正确';
+      }else {
+        this.data.heat_error = '';
+      }
+  },
+  isConConfirm : function(event) {
+    this.setData({
+      confirm_patient : event.detail
+    })
+  },
+  isHighRisk : function(event) {
+      this.setData({
+        high_risk : event.detail
+      })
+  },
+  isOutChina : function(event) {
+      this.setData({
+        foreign : event.detail
+      })
   },
   hintClick : function(event) {
       this.setData({
