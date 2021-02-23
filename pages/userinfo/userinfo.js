@@ -24,18 +24,30 @@ Page({
     isSymtomData : 'none',
     province : '',
     city : '',
-    county : ''
+    county : '',
+    hint_list : [],
+    addr_inp : true
+  },
+  hintClick : function(event) {
+      this.setData({
+        detail_addr : event.target.dataset.addr,
+        addr_inp : false
+      })
   },
   detailAddrChange : function(event) {
+    // 详细地址输入
       let key = event.detail;
       var _this = this;
       qqmapsdk.getSuggestion({
         keyword : event.detail,
-        region : _this.data.city,
+        region : _this.data.city == null ? '' : _this.data.city,
         region_fix : 1,
         policy : 1,
         success : function(res) {
-          console.log(res);
+          let dat = res.data.slice(0,5);
+          _this.setData({
+            hint_list : dat
+          })
         },
         fail : function(res) {
           console.log(res)
