@@ -4,12 +4,11 @@
     <van-col span="10" class="headline-container">基本信息</van-col>
     <view>
       <van-cell-group>
-        <van-field model:value="{{ name }}" placeholder="请输入姓名" required clearable label="姓名" border="{{ true }}"
-          bind:change="onChange" />
+        <van-field model:value="{{ name }}" placeholder="请输入姓名" required clearable label="姓名" border="{{ true }}" />
         <van-field model:value="{{ cardId }}" placeholder="请输入身份证号" required clearable label="身份证号" border="{{ true }}"
-          bind:change="onChange" />
+          error-message="{{ id_error }}" bind:change="idChange" />
         <van-field model:value="{{ phone }}" placeholder="请输入电话号码" required clearable label="电话" border="{{ true }}"
-          bind:change="onChange" />
+          error-message="{{phone_error}}" bind:change="phoneChange" />
         <van-cell required title="居住地" value="{{pickerText}}" bind:click="showPopup" />
         <van-popup position="bottom" show="{{ show }}">
           <van-picker id="picker1" show-toolbar title="选择城市" columns="{{ columns }}" bind:change="locPickerChange"
@@ -26,10 +25,10 @@
         <van-col span="10" class="headline-container">健康自查</van-col>
         <van-cell title='是否有异常症状' use-label-slot>
           <view slot="label">
-          <van-radio-group value="{{ symptom }}" bind:change="isSymtom" direction="horizontal" class="radio-horizon">
-            <van-radio name="1" class="radio">是</van-radio>
-            <van-radio name="2">否</van-radio>
-          </van-radio-group>
+            <van-radio-group value="{{ symptom }}" bind:change="isSymtom" direction="horizontal" class="radio-horizon">
+              <van-radio name="1" class="radio">是</van-radio>
+              <van-radio name="2">否</van-radio>
+            </van-radio-group>
           </view>
         </van-cell>
 
@@ -42,10 +41,11 @@
             </view>
           </view>
           <view slot="label">
-            <van-radio-group value="{{ foreign }}" bind:change="isOutChina" direction="horizontal" class="radio-horizon">
-            <van-radio name="1" class="radio">是</van-radio>
-            <van-radio name="2">否</van-radio>
-          </van-radio-group>
+            <van-radio-group value="{{ foreign }}" bind:change="isOutChina" direction="horizontal"
+              class="radio-horizon">
+              <van-radio name="1" class="radio">是</van-radio>
+              <van-radio name="2">否</van-radio>
+            </van-radio-group>
           </view>
         </van-cell>
 
@@ -56,13 +56,14 @@
             </view>
           </view>
           <view slot="label">
-            <van-radio-group value="{{ high_risk }}" bind:change="isHighRisk" direction="horizontal" class="radio-horizon">
-            <van-radio name="1" class="radio">是</van-radio>
-            <van-radio name="2">否</van-radio>
-          </van-radio-group>
+            <van-radio-group value="{{ high_risk }}" bind:change="isHighRisk" direction="horizontal"
+              class="radio-horizon">
+              <van-radio name="1" class="radio">是</van-radio>
+              <van-radio name="2">否</van-radio>
+            </van-radio-group>
           </view>
         </van-cell>
-        
+
         <van-cell border="{{ true }}" use-label-slot>
           <view slot="title">
             <view class="van-cell-text">
@@ -70,17 +71,21 @@
             </view>
           </view>
           <view slot="label">
-            <van-radio-group value="{{ confirm_patient }}" bind:change="isConConfirm" direction="horizontal" class="radio-horizon">
-            <van-radio name="1" class="radio">是</van-radio>
-            <van-radio name="2">否</van-radio>
-          </van-radio-group>
+            <van-radio-group value="{{ confirm_patient }}" bind:change="isConConfirm" direction="horizontal"
+              class="radio-horizon">
+              <van-radio name="1" class="radio">是</van-radio>
+              <van-radio name="2">否</van-radio>
+            </van-radio-group>
           </view>
         </van-cell>
 
         <van-field model:value="{{ heat }}" placeholder="请输入体温" required clearable label="当前体温" border="{{ true }}"
-          bind:change="heatInp" error-message="{{heat_error }}" />
-          
+          bind:change="heatInp" error-message="{{ heat_error}}" />
+
       </van-cell-group>
     </view>
   </van-row>
+</view>
+<view style="margin:40rpx 20rpx 0 20rpx;">
+<van-button hairline type="primary" block bind:click="submit">提交</van-button>
 </view>

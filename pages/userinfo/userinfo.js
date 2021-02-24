@@ -30,13 +30,48 @@ Page({
     foreign : '2',
     high_risk : '2',
     confirm_patient : '2',
-    heat_error : ''
+    heat_error : '',
+    id_error : '',
+    phone_error : ''
+  },
+  submit:function(event) {
+      console.log("sub")
+  },
+  phoneChange : function(event) {
+    var reg = /^1[3-9]\d{9}$/;
+    let f1 = reg.test(event.detail);
+    if(f1 == false) {
+      this.setData({
+        phone_error : '请输入正确电话号码'
+      })
+    }else {
+      this.setData({
+        phone_error : ''
+      })
+    }
+  },
+  idChange : function(event) {
+    var reg =/(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$)/;
+    let f = reg.test(event.detail);
+    if (f == false) {
+      this.setData({
+        id_error : '请输入正确身份证号'
+      })
+    }else {
+      this.setData({
+        id_error : ''
+      })
+    }
   },
   heatInp : function(event) {
-      if(event.detail < 34 || event.detail > 40 || !isNaN(event.detail)){
-          this.data.heat_error = '体温输入不正确';
+      if(event.detail < 34 || event.detail > 40 || isNaN(event.detail)){
+        this.setData({
+          heat_error : '体温输入不正确'
+        })
       }else {
-        this.data.heat_error = '';
+        this.setData({
+          heat_error : ''
+        })
       }
   },
   isConConfirm : function(event) {
