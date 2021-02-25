@@ -2,6 +2,7 @@
 // 引入SDK核心类，js文件根据自己业务，位置可自行放置
 var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
 var qqmapsdk;
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -35,7 +36,10 @@ Page({
     phone_error : ''
   },
   submit:function(event) {
-      console.log("sub")
+      // 收集并转换信息
+      wx.request({
+        url: app.globalData.urlBase + app.globalData.urlMap.fill,
+      })
   },
   phoneChange : function(event) {
     var reg = /^1[3-9]\d{9}$/;

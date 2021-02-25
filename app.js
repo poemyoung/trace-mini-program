@@ -5,16 +5,8 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        this.getUserInfo(res.code);
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
+     // 获取用户信息
+     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
@@ -34,19 +26,27 @@ App({
     })
   },
   onShow : function(){
-       
+      // 登录
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        this.getUserInfo(res.code);
+      }
+    });
   },
   globalData: {
     userInfo: null,
     userId: "",
-    urlBase: "http://8.129.121.171:8080",
+    urlBase: "https://www.poemyoung.xyz",
     urlMap:{
       login : "/miniapi/login",
-      userinfofill : "/miniapi/isfill"
+      userinfofill : "/miniapi/isfill",
+      fill : "/miniapi/fill"
     }
   },
   getUserInfo : function(data) {
     let that = this;
+    console.log(this.globalData.urlBase + this.globalData.urlMap.login + "?openId="+data)
     wx.request({
       url: this.globalData.urlBase + this.globalData.urlMap.login + "?openId="+data,
       success : function(res){
@@ -59,6 +59,9 @@ App({
         wx.showToast({
           title: '服务器错误',
         })(res.data.msg);
+      },
+      complete : function(res){
+        console.log(res);
       }
     })
   }

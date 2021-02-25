@@ -1,2 +1,27 @@
 <!--pages/symptom/symtomcos.wxml-->
-<text>pages/symptom/symtomcos.wxml</text>
+<van-checkbox-group value="{{ symptom_detail }}" bind:change="onChange">
+<van-cell-group >
+    <van-cell>
+  <van-checkbox name="1" >感冒症状：乏力、咳嗽、发烧、肌肉痛、头痛</van-checkbox>
+</van-cell>
+<van-cell>
+  <van-checkbox name="2" >喘憋、呼吸急促</van-checkbox>
+</van-cell>
+<van-cell>
+  <van-checkbox name="3" >恶心呕吐、腹泻</van-checkbox>
+</van-cell>
+<van-cell>
+  <van-checkbox name="4" >心慌、胸闷</van-checkbox>
+</van-cell>
+<van-cell>
+  <van-checkbox name="5" >结膜炎（红眼病样表现：眼睛干涩、红、分泌物）</van-checkbox>
+</van-cell>
+<van-cell>
+  <van-checkbox name="6" >其它</van-checkbox>
+</van-cell>
+</van-cell-group>
+<van-button type="info" size="large" bind:click="symSubmit">完成</van-button>
+</van-checkbox-group>
+
+
+

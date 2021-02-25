@@ -5,7 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    symptom_detail : []
+  },
+  symSubmit : function(event) {
+      var _this = this;
+      wx.setStorage({
+        key: "symptom_detail",
+        data: _this.data.symptom_detail,
+      })
+      wx.navigateBack({
+        delta: 1,
+      })
+  },
+  onChange : function(event) {
+      this.setData({
+        symptom_detail : event.detail
+      });
   },
 
   /**
