@@ -16,10 +16,9 @@ Page({
     })
   },
   onLoad: function () {
-    wx.getStorage({
-      key: 'userId',
-      success(res){
+    
         //查询用户是否已经填报完成基本信息
+        if(app.globalData.userId && app.globalData.userId != '') {
         wx.request({
           url: app.globalData.urlBase + app.globalData.urlMap.userinfofill + "?userid=" + res.data,
           success: function(res) {
@@ -36,9 +35,26 @@ Page({
             })
           }
         })
-        //未填报信息进行页面跳转
+      }else {
+        app.userIdCallBack = param => {
+          wx.request({
+            url: app.globalData.urlBase + app.globalData.urlMap.userinfofill + "?userid=" + param,
+            success: function(res) {
+              let code = res.data.code;
+              if(code === 200006) {
+                wx.navigateTo({
+                  url: '../userinfo/userinfo',
+                })
+              }
+            },
+            fail : function(res) {
+              wx.showToast({
+                title: '请求错误'
+              })
+            }
+        })
       }
-    })
+      }
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

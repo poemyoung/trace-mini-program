@@ -50,10 +50,11 @@ App({
     wx.request({
       url: this.globalData.urlBase + this.globalData.urlMap.login + "?openId="+data,
       success : function(res){
-        wx.setStorage({
-          data: res.data.data,
-          key: 'userId',
-        })
+        that.globalData.userId = res.data.data;
+        // 回掉函数，防止方法未请求完毕
+        if(that.userIdCallBack) {
+          that.userIdCallBack(res.data.data);
+        }
       },
       fail: function(res){
         wx.showToast({
