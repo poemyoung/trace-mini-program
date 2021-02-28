@@ -12,10 +12,18 @@ Page({
       wx.setStorage({
         key: "symptom_detail",
         data: _this.data.symptom_detail,
+        success : function(res) {
+          wx.navigateBack({
+            delta: 1,
+          })
+        },
+        fail : function(res) {
+          wx.showToast({
+            title: '本地缓存不足',
+          })
+        }
       })
-      wx.navigateBack({
-        delta: 1,
-      })
+      
   },
   onChange : function(event) {
       this.setData({
@@ -27,7 +35,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var _this = this;
+      wx.getStorage({
+        key: 'symptom_detail',
+        success : function(res) {
+            _this.setData({
+              symptom_detail : res.data
+            })
+        }
+      })
   },
 
   /**

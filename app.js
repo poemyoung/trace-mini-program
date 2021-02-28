@@ -46,7 +46,6 @@ App({
   },
   getUserInfo : function(data) {
     let that = this;
-    console.log(this.globalData.urlBase + this.globalData.urlMap.login + "?openId="+data)
     wx.request({
       url: this.globalData.urlBase + this.globalData.urlMap.login + "?openId="+data,
       success : function(res){
@@ -60,9 +59,6 @@ App({
         wx.showToast({
           title: '服务器错误',
         })(res.data.msg);
-      },
-      complete : function(res){
-        console.log(res);
       }
     })
   }

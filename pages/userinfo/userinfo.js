@@ -16,12 +16,11 @@ Page({
     healthFlag: 0,
     status_now: 0,
     symptom: '2',
-    body_heat: 36,
+    body_heat: '',
     show: false,
     positions: [],
     columns: [],
     pickerText : '您当前的居住地',
-    detail_addr : '',
     isSymtomData : 'none',
     province : '',
     city : '',
@@ -35,10 +34,68 @@ Page({
     id_error : '',
     phone_error : ''
   },
+  wxReqSubmit : function(sym_type) {
+    var _this = this;
+    wx.request({
+      url: app.globalData.urlBase + app.globalData.urlMap.fill,
+      header : {
+        'content-type': 'application/json'
+      },
+      method :'POST',
+      data : {
+        userId : app.globalData.userId,
+        name : _this.data.name,
+        idCard : _this.data.cardId,
+        phone : _this.data.phone,
+        location : {
+          province : _this.data.province,
+          city : _this.data.city,
+          county : _this.data.county,
+          detailAddr : _this.data.detail_addr
+        },
+        symptom : {
+          isSymptom : _this.data.symptom == "1",
+          type : sym_type
+        },
+        foreign : _this.data.foreign == "1",
+        highRisk : _this.data.high_risk == "1",
+        contactPatient : _this.data.confirm_patient == "1",
+        bodyHeat : isNaN(_this.data.body_heat) ? parseFloat(_this.data.body_heat) : _this.data.body_heat
+      },
+      success : function(res) {
+        console.log(res);
+      },
+      fail : function(res) {
+        wx.showToast({
+          title: '提交错误',
+          icon : error
+        })
+      }
+    })
+  },
   submit:function(event) {
       // 收集并转换信息
-      wx.request({
-        url: app.globalData.urlBase + app.globalData.urlMap.fill,
+      var _this = this;
+      var type = '000000';
+      wx.getStorage({
+        key: 'symptom_detail',
+        success : function(res) {
+          type = '';
+          for(let i = 1;i <= 6; i++){
+              if(res.data.includes(i+'')) {
+                type += '1';
+              }else {
+                type += '0'
+              }
+            }
+          console.log(type)
+        },
+        fail : function(res) {
+         
+        },
+        complete : function(res) {
+          _this.wxReqSubmit(type);
+        }
       })
   },
   phoneChange : function(event) {

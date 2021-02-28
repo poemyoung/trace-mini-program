@@ -16,12 +16,12 @@ Page({
     })
   },
   onLoad: function () {
-    
         //查询用户是否已经填报完成基本信息
         if(app.globalData.userId && app.globalData.userId != '') {
         wx.request({
           url: app.globalData.urlBase + app.globalData.urlMap.userinfofill + "?userid=" + res.data,
           success: function(res) {
+            console.log(res);
             let code = res.data.code;
             if(code === 200006) {
               wx.navigateTo({
@@ -40,6 +40,7 @@ Page({
           wx.request({
             url: app.globalData.urlBase + app.globalData.urlMap.userinfofill + "?userid=" + param,
             success: function(res) {
+              console.log(res)
               let code = res.data.code;
               if(code === 200006) {
                 wx.navigateTo({
