@@ -1,4 +1,4 @@
 <!--index.wxml-->
 <view>
-  <van-button type="primary">按钮</van-button>
+  欢迎您，用户   {{user_id}}
 </view>

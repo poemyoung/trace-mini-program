@@ -63,7 +63,15 @@ Page({
         bodyHeat : isNaN(_this.data.body_heat) ? parseFloat(_this.data.body_heat) : _this.data.body_heat
       },
       success : function(res) {
-        console.log(res);
+        if(res.data.code == "1"){
+          wx.navigateTo({
+            url: '../index/index',
+          })
+        }else {
+          wx.showToast({
+            title: '参数有误',
+          })
+        }
       },
       fail : function(res) {
         wx.showToast({
