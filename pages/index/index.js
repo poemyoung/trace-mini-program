@@ -20,7 +20,7 @@ Page({
         //查询用户是否已经填报完成基本信息
         if(app.globalData.userId && app.globalData.userId != '') {
         wx.request({
-          url: app.globalData.urlBase + app.globalData.urlMap.userinfofill + "?userid=" + res.data,
+          url: app.globalData.urlBase + app.globalData.urlMap.userinfofill + "?userid=" + app.globalData.userId,
           success: function(res) {
             console.log(res);
             let code = res.data.code;
