@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/userinfo/userinfo",
-    "pages/symptom/symtomcos"
+    "pages/symptom/symtomcos",
+    "pages/tabs/message/message",
+    "pages/tabs/mine/mine"
   ],
   "permission": {
     "scope.userLocation": {
@@ -31,7 +33,8 @@
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-tabbar": "@vant/weapp/tabbar/index",
-  "van-tabbar-item": "@vant/weapp/tabbar-item/index"
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-icon": "@vant/weapp/icon/index"
   },
   "sitemapLocation": "sitemap.json",
   "useExtendedLib": {

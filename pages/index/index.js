@@ -8,7 +8,29 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    user_id : ''
+    user_id : '',
+    active : 0
+  },
+  tabChange : function(event) {
+    this.setData({
+      active : event.detail
+    })
+    let nav_page = "";
+    switch(event.detail) {
+      case 1:
+        nav_page = "../tabs/message/message";
+        break;
+      case 2:
+        nav_page = "../tabs/mine/mine";
+        break;
+      default:
+          wx.showToast({
+            title: '页面跳转错误',
+          })
+    }
+    wx.redirectTo({
+      url: nav_page,
+    })
   },
   //事件处理函数
   bindViewTap: function() {
@@ -21,7 +43,6 @@ Page({
     wx.request({
       url: app.globalData.urlBase + app.globalData.urlMap.userinfofill + "?userid=" + param,
       success: function(res) {
-        console.log(res);
         let code = res.data.code;
         if(code === 200006) {
           wx.navigateTo({
