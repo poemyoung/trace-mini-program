@@ -29,7 +29,9 @@
     "van-popup": "@vant/weapp/popup/index",
     "van-area": "@vant/weapp/area/index",
     "van-cell": "@vant/weapp/cell/index",
-    "van-cell-group": "@vant/weapp/cell-group/index"
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+  "van-tabbar-item": "@vant/weapp/tabbar-item/index"
   },
   "sitemapLocation": "sitemap.json",
   "useExtendedLib": {
