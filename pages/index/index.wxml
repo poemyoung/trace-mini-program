@@ -7,35 +7,34 @@
   </van-tabbar>
   <!-- 纯色或图片占位 -->
   <view class="up-container">
-    <van-row>
+    <view style="padding-top:7vh">
+    <van-row >
       <van-col span="24">
         <van-notice-bar left-icon="volume-o" text="{{notice_text}}" class="bar" />
       </van-col>
     </van-row>
+  </view>
     <van-row>
       <van-col span="8">
-        <van-icon name="scan" size="100rpx" class="top-icon-container" />
+        <view class="flex-container">
+          <van-icon name="scan" size="100rpx" class="top-icon-container" />
+          <text class="up-text">扫一扫</text>
+        </view>
       </van-col>
       <van-col span="8">
-        <van-icon name="qr" size="100rpx" class="top-icon-container" />
+        <view class="flex-container">
+          <van-icon name="qr" size="100rpx" class="top-icon-container" />
+          <text class="up-text">健康码</text>
+        </view>
       </van-col>
       <van-col span="8">
-        <van-icon name="qr-invalid" size="100rpx" class="top-icon-container" />
-      </van-col>
-    </van-row>
-    <van-row>
-      <van-col span="8">
-        <text style="margin-left: 9vw">扫一扫</text>
-      </van-col>
-      <van-col span="8">
-        <text style="margin-left: 3vw">出示健康码</text>
-      </van-col>
-      <van-col span="8">
-        <text style="margin-left: 3vw">申领静态码</text>
+        <view class="flex-container">
+          <van-icon name="qr-invalid" size="100rpx" class="top-icon-container" />
+          <text class="up-text">静态码</text>
+        </view>
       </van-col>
     </van-row>
   </view>
   <view>
-    
   </view>
 </view>
