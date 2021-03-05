@@ -9,7 +9,8 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     user_id : '',
-    active : 0
+    active : 0,
+    notice_text : "在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
   },
   tabChange : function(event) {
     this.setData({

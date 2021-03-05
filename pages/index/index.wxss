@@ -1,4 +1,17 @@
 /**index.wxss**/
+.bar {
+  margin-top: 10vh;
+}
+.top-icon-container {
+  margin: 10vh 0 0 10vw ;
+}
+.up-container {
+  width: 750rpx;
+  height: 20%;
+  background-color: rgba(67, 161, 118, 0.555);
+  display: block;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
