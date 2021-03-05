@@ -1,4 +1,11 @@
 /**index.wxss**/
+.hover{
+  background-color : #f2f3f5;
+}
+
+.panel-class {
+  margin-top: 4vh;
+}
 .flex-container {
   display: flex;
   flex-direction: column;
@@ -6,15 +13,16 @@
 .up-text {
   font-size: 6vw;
   margin: 2vh 0 0 12vw ;
+  color: white;
 }
 
 .top-icon-container {
-  margin: 10vh 0 0 10vw ;
+  margin: 7vh 0 0 10vw ;
 }
 .up-container {
   width: 750rpx;
   height: 20%;
-  background-color: rgba(67, 161, 118, 0.555);
+  background-color: #4e90e7;
   display: block;
 }
 

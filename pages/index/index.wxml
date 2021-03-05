@@ -8,33 +8,48 @@
   <!-- 纯色或图片占位 -->
   <view class="up-container">
     <view style="padding-top:7vh">
-    <van-row >
-      <van-col span="24">
-        <van-notice-bar left-icon="volume-o" text="{{notice_text}}" class="bar" />
-      </van-col>
-    </van-row>
-  </view>
+      <van-row>
+        <van-col span="24">
+          <van-notice-bar left-icon="volume-o" text="{{notice_text}}" class="bar" />
+        </van-col>
+      </van-row>
+    </view>
     <van-row>
       <van-col span="8">
-        <view class="flex-container">
-          <van-icon name="scan" size="100rpx" class="top-icon-container" />
+        <view class="flex-container" >
+          <van-icon name="scan" size="100rpx" color="white" class="top-icon-container" />
           <text class="up-text">扫一扫</text>
         </view>
       </van-col>
       <van-col span="8">
         <view class="flex-container">
-          <van-icon name="qr" size="100rpx" class="top-icon-container" />
+          <van-icon name="qr" color="white" size="100rpx" class="top-icon-container" />
           <text class="up-text">健康码</text>
         </view>
       </van-col>
       <van-col span="8">
         <view class="flex-container">
-          <van-icon name="qr-invalid" size="100rpx" class="top-icon-container" />
+          <van-icon name="qr-invalid" color="white" size="100rpx" class="top-icon-container" />
           <text class="up-text">静态码</text>
         </view>
       </van-col>
     </van-row>
   </view>
+  
+  <!-- 中间可扩展内容层 -->
   <view>
+    <van-panel use-footer-slot custom-class="panel-class">
+      <view slot="footer">
+        <van-grid clickable border="{{false}}" column-num="3">
+          <van-grid-item icon-color="blue" icon="description" color="blue" text="提交工单" />
+          <van-grid-item icon-color="purple" icon="https://www.poemyoung.xyz/icons/popularize.png" text="肺炎科普" />
+          <van-grid-item icon-color="green" icon="records" text="健康申报" />
+          <van-grid-item icon-color="red" icon="location-o" text="查风险地区" />
+          <van-grid-item icon-color="chocolate" icon="newspaper-o" text="看疫情新闻" />
+          <van-grid-item icon-color="aquamarine" icon="https://www.poemyoung.xyz/icons/gov.png" text="查疫情政策" />
+          <van-grid-item icon-color="darkcyan" icon="https://www.poemyoung.xyz/icons/thread.png" text="疫情线索上报" />
+        </van-grid>
+      </view>
+    </van-panel>
   </view>
 </view>
