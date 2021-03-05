@@ -1,6 +1,10 @@
 /**index.wxss**/
+.bar {
+  font-size: 4vw;
+}
+
 .hover{
-  background-color : #f2f3f5;
+  color : #3d5380;
 }
 
 .panel-class {
@@ -11,13 +15,13 @@
   flex-direction: column;
 }
 .up-text {
-  font-size: 6vw;
-  margin: 2vh 0 0 12vw ;
+  font-size: 5vw;
+  margin: 1vh 0 0 14vw ;
   color: white;
 }
 
 .top-icon-container {
-  margin: 7vh 0 0 10vw ;
+  margin: 4vh 0 0 10vw ;
 }
 .up-container {
   width: 750rpx;

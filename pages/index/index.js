@@ -12,6 +12,66 @@ Page({
     active : 0,
     notice_text : "在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
   },
+  //疫情线索上报点击
+  threadUp : function(event) {
+    wx.navigateTo({
+      url: '../threadup/tdupidx/tdupidx',
+    })
+  },
+  //查疫情政策
+  checkPolicy : function(event) {
+      wx.navigateTo({
+        url: '../ckpolicy/ckpolicyidx/ckpolicyidx',
+      })
+  },
+  //看疫情新闻点击
+  checkNews : function(event) {
+    wx.navigateTo({
+      url: '../cknews/cknewsidx/cknewsidx',
+    })
+  },
+  //查风险地区点击
+  checkHighRisk : function(event) {
+      wx.navigateTo({
+        url: '../ckhigh/ckhighidx/ckhighidx',
+      })
+  },
+  //健康申报点击
+  report : function(event) {
+    wx.navigateTo({
+      url: '../userinfo/userinfo',
+    })
+  },
+  //肺炎科普点击
+  popularize : function(event) {
+    wx.navigateTo({
+      url: '../pop/popidx/popidx',
+    })
+  },
+  //提交工单点击
+  workSys : function(event) {
+    wx.navigateTo({
+      url: '../worksys/submit/submit',
+    })
+  },
+  // 扫一扫点击
+  scanClick : function(event) {
+    wx.navigateTo({
+      url: '../scan/scan',
+    })
+  },
+  //健康码点击
+  healthyCode : function(event) {
+    wx.navigateTo({
+      url: '../hcode/hcode',
+    })
+  },
+  //静态码点击
+  staticCode : function(event) {
+      wx.navigateTo({
+        url: '../scode/scode',
+      })
+  },
   tabChange : function(event) {
     this.setData({
       active : event.detail
