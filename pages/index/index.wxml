@@ -9,8 +9,8 @@
   <view class="up-container">
     <view style="padding-top:7vh">
       <van-row>
-        <van-col span="24">
-          <van-notice-bar background="#4e90e7;" color="white" left-icon="volume-o" text="{{notice_text}}" class="bar" />
+        <van-col span="24" >
+          <van-notice-bar background="blue;" color="white" left-icon="volume-o" text="{{notice_text}}" custom-class="bar" />
         </van-col>
       </van-row>
     </view>

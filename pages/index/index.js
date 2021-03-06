@@ -56,9 +56,23 @@ Page({
   },
   // 扫一扫点击
   scanClick : function(event) {
-    wx.navigateTo({
-      url: '../scan/scan',
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType : ['qrCode'],
+      success : function(res) {
+       
+        console.log(res);
+      },
+      fail : function(res) {
+        wx.showToast({
+          title: '扫码失败',
+          icon : 'warn'
+        })
+      }
     })
+    // wx.navigateTo({
+    //   url: '../scan/scan',
+    // })
   },
   //健康码点击
   healthyCode : function(event) {
