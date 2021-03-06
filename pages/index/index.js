@@ -14,15 +14,36 @@ Page({
   },
   // 主动定位点击
   locateClick : function(event) {
+    let _this = this;
      wx.getLocation({
        type : "gcj02",
        success : function(res) {
+         let userId = 0;
+         wx.getStorage({
+            key: 'userId',
+            success : function(res) {
+              userId = res.data;
+            }
+         })
          wx.request({
            url: app.globalData.urlBase + app.globalData.urlMap.loc_load,
            method: 'POST',
            data : {
             latitude : res.latitude,
-            longitude : res.longitude
+            longitude : res.longitude,
+            userid : userId
+           },
+           success: function(res) {
+             console.log(res)
+            wx.showToast({
+              title: '定位成功',
+            })
+           },
+           fail: function(res) {
+            wx.showToast({
+              title: '服务器错误',
+              icon: 'none'
+            })
            }
          })
        },

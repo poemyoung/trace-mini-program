@@ -37,7 +37,7 @@ App({
   globalData: {
     userInfo: null,
     userId: "",
-    urlBase: "https://localhost:443",
+    urlBase: "https://www.poemyoung.xyz",
     urlMap:{
       login : "/miniapi/login",
       userinfofill : "/miniapi/isfill",
@@ -52,6 +52,10 @@ App({
       url: this.globalData.urlBase + this.globalData.urlMap.login + "?openId="+data,
       success : function(res){
         that.globalData.userId = res.data.data;
+        wx.setStorage({
+          data: res.data.data,
+          key: 'userId',
+        })
         // 回掉函数，防止方法未请求完毕
         if(that.userIdCallBack) {
           that.userIdCallBack(res.data.data);
