@@ -14,9 +14,25 @@ Page({
   },
   // 主动定位点击
   locateClick : function(event) {
-      wx.navigateTo({
-        url: '../selflocate/selflocate',
-      })
+     wx.getLocation({
+       type : "gcj02",
+       success : function(res) {
+         wx.request({
+           url: app.globalData.urlBase + app.globalData.urlMap.loc_load,
+           method: 'POST',
+           data : {
+            latitude : res.latitude,
+            longitude : res.longitude
+           }
+         })
+       },
+       fail: function(res){
+         wx.showToast({
+           title: '定位失败',
+           icon:'none'
+         })
+       }
+     })
   },
   //疫情线索上报点击
   threadUp : function(event) {

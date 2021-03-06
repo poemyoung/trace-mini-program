@@ -42,7 +42,8 @@ App({
       login : "/miniapi/login",
       userinfofill : "/miniapi/isfill",
       fill : "/miniapi/fill",
-      qr_upload : "/miniapi/qrupload"
+      qr_upload : "/miniapi/qrupload",
+      loc_load : "/miniapi/loadlocation"
     }
   },
   getUserInfo : function(data) {
@@ -59,6 +60,7 @@ App({
       fail: function(res){
         wx.showToast({
           title: '服务器错误',
+          icon: 'warn'
         })(res.data.msg);
       }
     })
