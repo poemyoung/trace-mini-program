@@ -1,25 +1,18 @@
-// pages/scan/scan.js
+// pages/selflocate/selflocate.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    suggest : ['建议继续保持！','建议提高定位频率！','建议在家隔离！','建议集中隔离!'],
-    status_desc : ['无风险','无风险','中风险','高风险'],
-    status : 1,
-    color: ['#29a766','#9cc0f8','#fcd989','#f17a6f'],
-    face_color:['green','blue','yellow','red']
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      console.log(options);
-      this.setData({
-          status : options.status
-      })
+
   },
 
   /**

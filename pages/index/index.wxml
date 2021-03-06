@@ -10,7 +10,7 @@
     <view style="padding-top:7vh">
       <van-row>
         <van-col span="24" >
-          <van-notice-bar background="blue;" color="white" left-icon="volume-o" text="{{notice_text}}" custom-class="bar" />
+          <van-notice-bar background="white;" color="blue" left-icon="volume-o" text="{{notice_text}}" custom-class="bar" />
         </van-col>
       </van-row>
     </view>
@@ -54,6 +54,7 @@
           bind:click="checkNews"/>
           <van-grid-item icon-color="aquamarine" icon="https://www.poemyoung.xyz/icons/gov.png" text="查疫情政策" bind:click="checkPolicy"/>
           <van-grid-item icon-color="darkcyan" icon="https://www.poemyoung.xyz/icons/thread.png" text="疫情线索上报" bind:click="threadUp"/>
+          <van-grid-item icon-color="lightsalmon" icon="aim" text="主动定位" bind:click="locateClick"/>
         </van-grid>
       </view>
     </van-panel>

@@ -12,6 +12,12 @@ Page({
     active : 0,
     notice_text : "在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
   },
+  // 主动定位点击
+  locateClick : function(event) {
+      wx.navigateTo({
+        url: '../selflocate/selflocate',
+      })
+  },
   //疫情线索上报点击
   threadUp : function(event) {
     wx.navigateTo({
@@ -60,7 +66,25 @@ Page({
       onlyFromCamera: true,
       scanType : ['qrCode'],
       success : function(res) {
-       
+        let qr_res = res;
+       wx.request({
+         url: app.globalData.urlBase + app.globalData.urlMap.qr_upload,
+         method : 'POST',
+         data : {
+           res : qr_res
+         },
+         success : function(r) {
+            wx.navigateTo({
+              url: '../scan/scan?status='+r.data.data,
+            })
+         },
+         fail : function(r) {
+           wx.showToast({
+             title: '服务器错误',
+             icon : 'warn'
+           })
+         }
+       })
         console.log(res);
       },
       fail : function(res) {

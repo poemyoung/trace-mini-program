@@ -1,2 +1,18 @@
 <!--pages/scan/scan.wxml-->
-<text>pages/scan/scan.wxml</text>
+<view class="body" style="background-color : {{color[status-1]}}">
+  <text class="text-container">报备人疫情健康状态为</text>
+  <text class="text-container">{{status_desc[status-1]}}</text>
+  <text class="text-container">{{suggest[status-1]}}</text>
+  <van-grid column-num="1" square custom-class="direct">
+    <van-grid-item use-slot>
+      <van-icon name="upgrade" size='9em' color='{{face_color[status-1]}}' 
+      style="display:{{status == 1 ? 'block' : 'none'}}"/>
+      <van-icon name="smile-o" size='9em' color='{{face_color[status-1]}}' 
+      style="display:{{status == 2 ? 'block' : 'none'}}"/>
+      <van-icon name="https://www.poemyoung.xyz/icons/faceyellow.png" size='9em' color='{{face_color[status-1]}}' 
+      style="display:{{status == 3 ? 'block' : 'none'}}"/>
+      <van-icon name="https://www.poemyoung.xyz/icons/facered.png" size='9em' color='{{face_color[status-1]}}' 
+      style="display:{{status == 4 ? 'block' : 'none'}}"/>
+    </van-grid-item>
+  </van-grid>
+</view>
