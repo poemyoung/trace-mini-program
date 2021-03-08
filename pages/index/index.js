@@ -31,7 +31,7 @@ Page({
            data : {
             latitude : res.latitude,
             longitude : res.longitude,
-            userid : userId
+            userId : userId
            },
            success: function(res) {
              console.log(res)

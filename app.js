@@ -43,7 +43,9 @@ App({
       userinfofill : "/miniapi/isfill",
       fill : "/miniapi/fill",
       qr_upload : "/miniapi/qrupload",
-      loc_load : "/miniapi/loadlocation"
+      loc_load : "/miniapi/loadlocation",
+      qr_dynget : "/miniapi/qrdyn",
+      user_info_get : "/miniapi/getuserbaseinfo"
     }
   },
   getUserInfo : function(data) {

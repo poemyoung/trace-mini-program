@@ -1,1 +1,11 @@
 /* pages/hcode/hcode.wxss */
+.body-up {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #2288f0;
+  padding: 10vh 10vw 20vh 10vw;
+}
+page {
+  background-color: #2288f0;
+}
