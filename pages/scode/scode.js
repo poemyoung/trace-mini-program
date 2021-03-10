@@ -9,7 +9,21 @@ Page({
   data: {
       activeName : '1',
       code_count : 5,
-      panel_array : ['1','2','3','4','5']
+      panel_array : [
+        {
+            'userName' : '徐**',
+            'idCard' : '51*************16',
+            'qrCode' : "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
+        },{
+          'userName' : '徐*',
+            'idCard' : '51*************16',
+            'qrCode' : "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
+        },{
+          'userName' : '徐*',
+            'idCard' : '51*************16',
+            'qrCode' : "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
+        }
+      ]
   },
   panelOnChange : function(event) {
     this.setData({

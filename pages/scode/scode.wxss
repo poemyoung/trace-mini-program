@@ -3,7 +3,14 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 10vh 10vw 0 10vw;
+  padding: 10vh 0 0 0;
+}
+.qr-class {
+  display: flex;
+  flex-direction: column;
+}
+.btn-class {
+  width: 15rem;
 }
 page{
   background-color: #bddeff;
