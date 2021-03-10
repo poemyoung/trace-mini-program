@@ -1,1 +1,13 @@
 /* pages/scodemag/add/add.wxss */
+.body {
+  margin: 10vh 0 0 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.field-class {
+    padding: 2vh;
+}
+page{
+  background-color: #bddeff;
+}

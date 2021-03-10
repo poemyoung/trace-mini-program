@@ -1,2 +1,37 @@
 <!--pages/scodemag/add/add.wxml-->
-<text>pages/scodemag/add/add.wxml</text>
+<view class="body">
+  <van-cell-group>
+    <view class="field-class">
+      <van-field model:value="{{ name }}" placeholder="请输入姓名" required clearable label="姓名" border="{{ false }}"
+        input-class="field-class" />
+      <van-field model:value="{{ cardId }}" placeholder="请输入身份证号" required clearable label="身份证号"
+        border="{{ false }}" error-message="{{ id_error }}" bind:change="idChange" />
+    <van-button  type="primary" size='large' bind:click="verify">点击验证</van-button>
+  </view>
+  <van-divider hairline />
+  <van-empty style="display:{{user_dis == 1 ? 'block' : 'none'}}" description="请先验证" />
+</van-cell-group>
+  <view class="field-class" style="display:{{user_dis == 2 ? 'block' : 'none'}}">
+    <van-panel title="用户已申领过静态码！" use-footer-slot>
+      <view slot="footer">
+        <van-cell is-link title="不再重新填报" value="返回" label="使用上次填报的信息"
+        link-type="navigateTo" bind:click="noApply"
+        border="{{true}}"/>
+        <van-cell is-link title="重新填报" value="去填报" label="不使用上次填报的信息"
+        link-type="navigateTo" bind:click="apply"
+        border="{{true}}"/>
+      </view>
+    </van-panel>
+  </view>
+  <view class="field-class" style="display:{{user_dis == 3 ? 'block' : 'none'}}">
+    <van-panel title="用户未申领过静态码" use-footer-slot>
+      <view slot="footer">
+        <van-cell is-link title="静态码" value="去填报" label="用户首次申领"
+        link-type="navigateTo" bind:click="apply"
+        border="{{true}}"/>
+      </view>
+    </van-panel>
+  </view>
+
+</view>
+<van-toast id="van-toast" />

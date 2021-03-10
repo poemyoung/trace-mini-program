@@ -15,7 +15,7 @@
             </view>
           </van-collapse-item>
         </view>
-        <van-button block icon="add">添加成员</van-button>
+        <van-button block icon="add" bind:click="addNew">添加成员</van-button>
       </van-collapse>
     </view>
   </van-panel>

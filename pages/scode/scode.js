@@ -10,24 +10,12 @@ Page({
   data: {
     activeName: '1',
     code_count: 5,
-    panel_array: [{
-      'userName': '徐**',
-      'idCard': '51*************16',
-      'qrCode': "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
-    }, {
-      'userName': '徐*',
-      'idCard': '51*************16',
-      'qrCode': "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
-    }, {
-      'userName': '徐*',
-      'idCard': '51*************16',
-      'qrCode': "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
-    }],
-    data_array: [{
-      'userName': '徐*',
-      'idCard': '51*************16',
-      'qrCode': "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
-    }]
+    panel_array: []
+  },
+  addNew : function(event) {
+      wx.navigateTo({
+        url: '../scodemag/add/add'
+      })
   },
   del: function (event) {
     let _this = this;
@@ -53,7 +41,6 @@ Page({
         })
       }
     })
-
   },
   panelOnChange: function (event) {
     this.setData({
