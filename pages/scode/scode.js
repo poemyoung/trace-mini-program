@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      activeName : '',
+      activeName : '1',
       code_count : 5,
       panel_array : ['1','2','3','4','5']
   },
@@ -20,11 +20,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-      const ctx = wx.createCanvasContext('staticCode');
-      ctx.setFillStyle('aliceblue')
-      ctx.fillRect(10, 10, 150, 150)
-      ctx.draw();
+
   },
 
   /**
