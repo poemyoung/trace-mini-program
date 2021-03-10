@@ -3,14 +3,15 @@
   <van-panel title="您所管理的静态码" use-footer-slot>
     <view slot="footer">
       <van-collapse accordion value="{{ activeName }}" bind:change="panelOnChange">
-        <view wx:for="{{panel_array}}" wx:key="userId">
+        <view wx:for="{{panel_array}}" wx:key="userName">
           <van-collapse-item name="{{index}}">
             <view slot="title">
               <van-cell title="{{item.userName}}" value="{{item.idCard}}" border="{{false}}" />
             </view>
             <view class='qr-class'>
               <van-image width="15rem" height="15rem" fit="contain" src="{{item.qrCode}}" />
-              <van-button icon='delete' type="danger" custom-class="btn-class">删除</van-button>
+              <van-button icon='delete'
+              data-idx="{{index}}" type="danger" custom-class="btn-class" bind:click="del">删除</van-button>
             </view>
           </van-collapse-item>
         </view>
@@ -19,3 +20,4 @@
     </view>
   </van-panel>
 </view>
+<van-toast id="van-toast" />

@@ -1,5 +1,6 @@
 // pages/scode/scode.js
 import Tost from '../../miniprogram_npm/@vant/weapp/toast/toast';
+const app = getApp();
 
 Page({
 
@@ -7,36 +8,107 @@ Page({
    * 页面的初始数据
    */
   data: {
-      activeName : '1',
-      code_count : 5,
-      panel_array : [
-        {
-            'userName' : '徐**',
-            'idCard' : '51*************16',
-            'qrCode' : "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
-        },{
-          'userName' : '徐*',
-            'idCard' : '51*************16',
-            'qrCode' : "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
-        },{
-          'userName' : '徐*',
-            'idCard' : '51*************16',
-            'qrCode' : "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
-        }
-      ]
+    activeName: '1',
+    code_count: 5,
+    panel_array: [{
+      'userName': '徐**',
+      'idCard': '51*************16',
+      'qrCode': "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
+    }, {
+      'userName': '徐*',
+      'idCard': '51*************16',
+      'qrCode': "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
+    }, {
+      'userName': '徐*',
+      'idCard': '51*************16',
+      'qrCode': "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
+    }],
+    data_array: [{
+      'userName': '徐*',
+      'idCard': '51*************16',
+      'qrCode': "https://www.poemyoung.xyz/1505084195_2021310131336.jpg"
+    }]
   },
-  panelOnChange : function(event) {
+  del: function (event) {
+    let _this = this;
+    let idx = event.target.dataset.idx;
+    console.log(_this.data.data_array);
+    let qrUserId = this.data.data_array[idx].userId;
+    wx.getStorage({
+      key: 'userId',
+      success: function (res) {
+        wx.request({
+          url: app.globalData.urlBase + app.globalData.urlMap.qrcode_del,
+          method: 'POST',
+          data: {
+            "userId": res.data,
+            "userMagId": qrUserId
+          },
+          success: function (res) {
+            if (res.data.code == 1) {
+              Tost.success("删除成功");
+              _this.onLoad();
+            }
+          }
+        })
+      }
+    })
+
+  },
+  panelOnChange: function (event) {
     this.setData({
-      activeName : event.detail
+      activeName: event.detail
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 获取所管理的用户信息接口
+    let _this = this;
+    wx.getStorage({
+      key: 'userId',
+      success: function (res) {
+        _this.getMag(res.data);
+      }
+    })
   },
-
+  getMag: function (uid) {
+    let _this = this;
+    wx.request({
+      url: app.globalData.urlBase + app.globalData.urlMap.qrcode_mag + "?userId=" + uid,
+      success: function (res) {
+        if (res.data.code == 1) {
+          _this.setData({
+            data_array: res.data.data
+          })
+          // 数据处理
+          let array = new Array();
+          for (let i = 0; i < res.data.data.length; i++) {
+            let arr = res.data.data[i];
+            let idCard = arr.idCard;
+            let name = arr.userName;
+            idCard = idCard.replace(idCard.substr(2, 14), "***********")
+            if (name.length > 2) {
+              name = name.replace(name.substr(1, name.length - 2), "*")
+            } else {
+              name = name.replace(name.substr(1, 2), "*")
+            }
+            arr.userName = name;
+            arr.idCard = idCard;
+            let tmp = app.globalData.urlBase + arr.qrCode;
+            arr.qrCode = tmp;
+            array.push(arr);
+          }
+          _this.setData({
+            panel_array: array
+          })
+        } else {
+          Tost.fail("服务器错误！")
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
