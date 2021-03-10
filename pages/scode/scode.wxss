@@ -1,1 +1,10 @@
 /* pages/scode/scode.wxss */
+.body-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 10vh 10vw 0 10vw;
+}
+page{
+  background-color: #bddeff;
+}

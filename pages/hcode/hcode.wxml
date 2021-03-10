@@ -4,7 +4,7 @@
   <van-panel title="{{user_name}}" status="{{status_desc[status-1]}}" use-footer-slot>
     <view slot="footer">
       <van-cell title="{{user_idcard}}" />
-      <van-image width="10rem" height="10rem" fit="contain" src="{{url + qrcode_path}}" alt="二维码"
+      <van-image width="15rem" height="15rem" fit="contain" src="{{url + qrcode_path}}" alt="二维码"
         show-menu-by-longpress />
         <van-cell title="当前时间" value="{{now_str}}" size='large'/>
         <van-cell title="上次定位时间" value="{{last_locate_str}}" size='large'/>

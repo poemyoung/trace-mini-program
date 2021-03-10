@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
 Page({
   data: {
     motto: 'Hello World',
@@ -35,9 +35,7 @@ Page({
            },
            success: function(res) {
              console.log(res)
-            wx.showToast({
-              title: '定位成功',
-            })
+             Toast.success('定位成功');
            },
            fail: function(res) {
             wx.showToast({

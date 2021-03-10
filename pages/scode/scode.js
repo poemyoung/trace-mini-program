@@ -1,18 +1,30 @@
 // pages/scode/scode.js
+import Tost from '../../miniprogram_npm/@vant/weapp/toast/toast';
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+      activeName : '',
+      code_count : 5,
+      panel_array : ['1','2','3','4','5']
   },
-
+  panelOnChange : function(event) {
+    this.setData({
+      activeName : event.detail
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
+      const ctx = wx.createCanvasContext('staticCode');
+      ctx.setFillStyle('aliceblue')
+      ctx.fillRect(10, 10, 150, 150)
+      ctx.draw();
   },
 
   /**

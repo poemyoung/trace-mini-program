@@ -1,2 +1,19 @@
 <!--pages/scode/scode.wxml-->
-<text>pages/scode/scode.wxml</text>
+<view class="body-container">
+  <van-panel title="您所管理的静态码" use-footer-slot>
+    <view slot="footer">
+
+      <van-collapse accordion value="{{ activeName }}" bind:change="panelOnChange">
+        <view wx:for="{{panel_array}}" wx:key="userId">
+          <van-collapse-item name="{{index}}">
+            <view slot="title">
+              <van-cell title="徐*" value="51************" border="{{false}}" />
+            </view>
+            <canvas canvas-id="staticCode" style="border: 1px solid;"/>
+          </van-collapse-item>
+        </view>
+        <van-button block icon="add">添加成员</van-button>
+      </van-collapse>
+    </view>
+  </van-panel>
+</view>
