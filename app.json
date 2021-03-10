@@ -14,7 +14,8 @@
     "pages/ckhigh/ckhighidx/ckhighidx",
     "pages/cknews/cknewsidx/cknewsidx",
     "pages/ckpolicy/ckpolicyidx/ckpolicyidx",
-    "pages/threadup/tdupidx/tdupidx"
+    "pages/threadup/tdupidx/tdupidx",
+    "pages/scodemag/add/add"
   ],
   "permission": {
     "scope.userLocation": {
@@ -53,7 +54,9 @@
     "van-collapse": "@vant/weapp/collapse/index",
     "van-collapse-item": "@vant/weapp/collapse-item/index"
   },
-  "requiredBackgroundModes":["location"],
+  "requiredBackgroundModes": [
+    "location"
+  ],
   "sitemapLocation": "sitemap.json",
   "useExtendedLib": {
     "weui": true
