@@ -41,7 +41,7 @@ Page({
   onLoad: function (options) {
       this.setData({
         name : options.name,
-        idCard : options.idCard
+        cardId : options.idCard
       })
       qqmapsdk = new QQMapWX({
         key: 'RCEBZ-A3PK2-LGHU2-CWQKI-DVM23-NYBQ6'
