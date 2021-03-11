@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/scodemag/fill/fill",
     "pages/index/index",
     "pages/logs/logs",
     "pages/userinfo/userinfo",
@@ -16,7 +15,8 @@
     "pages/cknews/cknewsidx/cknewsidx",
     "pages/ckpolicy/ckpolicyidx/ckpolicyidx",
     "pages/threadup/tdupidx/tdupidx",
-    "pages/scodemag/add/add"
+    "pages/scodemag/add/add",
+    "pages/scodemag/fill/fill"
     
   ],
   "permission": {
@@ -56,7 +56,8 @@
     "van-collapse": "@vant/weapp/collapse/index",
     "van-collapse-item": "@vant/weapp/collapse-item/index",
     "van-empty": "@vant/weapp/empty/index",
-    "van-divider": "@vant/weapp/divider/index"
+    "van-divider": "@vant/weapp/divider/index",
+    "van-dialog": "@vant/weapp/dialog/index"
   },
   "requiredBackgroundModes": [
     "location"

@@ -68,7 +68,34 @@ Page({
     })  
   },
   noApply : function(event) {
-      
+    let _this = this;
+     wx.getStorage({
+       key: 'userId',
+       success : function(res) {
+        wx.request({
+          url: app.globalData.urlBase + app.globalData.urlMap.relate_add,
+          method : 'POST',
+          data : {
+            "userId" : res.data,
+            "magId" : res.data,
+            "userName" : _this.data.name,
+            "idCard" : _this.data.cardId
+          },
+          success : function(res) {
+            if(res.data.code == 1) {
+              wx.reLaunch({
+                url: '../../scode/scode',
+              })
+            }else {
+              Toast.fail("参数有误！")
+            }
+          },
+          fail : function(res) {
+            Toast.fail("服务器错误！")
+          }
+        })
+       }
+     })
   },
 
   /**

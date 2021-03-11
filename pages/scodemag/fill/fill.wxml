@@ -77,3 +77,4 @@
   </van-cell-group>
   <van-button hairline type="primary" block bind:click="submit">提交</van-button>
 </view>
+<van-toast id="van-toast" />

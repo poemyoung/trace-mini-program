@@ -1,5 +1,6 @@
 // pages/scode/scode.js
 import Tost from '../../miniprogram_npm/@vant/weapp/toast/toast';
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog'
 const app = getApp();
 
 Page({
@@ -17,29 +18,43 @@ Page({
         url: '../scodemag/add/add'
       })
   },
+  reFill : function(event) {
+    let idx = event.target.dataset.idx;
+    let d = this.data.data_array;
+    wx.navigateTo({
+      url: '../scodemag/fill/fill?name='+d[idx].userName + " &idCard=" + d[idx].idCard,
+    })
+  },
   del: function (event) {
     let _this = this;
     let idx = event.target.dataset.idx;
-    console.log(_this.data.data_array);
     let qrUserId = this.data.data_array[idx].userId;
-    wx.getStorage({
-      key: 'userId',
-      success: function (res) {
-        wx.request({
-          url: app.globalData.urlBase + app.globalData.urlMap.qrcode_del,
-          method: 'POST',
-          data: {
-            "userId": res.data,
-            "userMagId": qrUserId
-          },
-          success: function (res) {
-            if (res.data.code == 1) {
-              Tost.success("删除成功");
-              _this.onLoad();
+    Dialog.confirm({
+      title:'删除确认',
+      message : '是否确认删除？'
+    }).then(() => {
+      wx.getStorage({
+        key: 'userId',
+        success: function (res) {
+          wx.request({
+            url: app.globalData.urlBase + app.globalData.urlMap.qrcode_del,
+            method: 'POST',
+            data: {
+              "userId": res.data,
+              "userMagId": qrUserId
+            },
+            success: function (res) {
+              if (res.data.code == 1) {
+                Tost.success("删除成功");
+                _this.onLoad();
+              }
             }
-          }
-        })
-      }
+          })
+        }
+      })
+    })
+    .catch(() => {
+
     })
   },
   panelOnChange: function (event) {
@@ -73,6 +88,7 @@ Page({
           let array = new Array();
           for (let i = 0; i < res.data.data.length; i++) {
             let arr = res.data.data[i];
+            let tmpArr = {};
             let idCard = arr.idCard;
             let name = arr.userName;
             idCard = idCard.replace(idCard.substr(2, 14), "***********")
@@ -81,11 +97,11 @@ Page({
             } else {
               name = name.replace(name.substr(1, 2), "*")
             }
-            arr.userName = name;
-            arr.idCard = idCard;
+            tmpArr.userName = name;
+            tmpArr.idCard = idCard;
             let tmp = app.globalData.urlBase + arr.qrCode;
-            arr.qrCode = tmp;
-            array.push(arr);
+            tmpArr.qrCode = tmp;
+            array.push(tmpArr);
           }
           _this.setData({
             panel_array: array

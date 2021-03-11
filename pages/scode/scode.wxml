@@ -12,6 +12,9 @@
               <van-image width="15rem" height="15rem" fit="contain" src="{{item.qrCode}}" />
               <van-button icon='delete'
               data-idx="{{index}}" type="danger" custom-class="btn-class" bind:click="del">删除</van-button>
+              <van-button icon='add-square'
+              data-idx="{{index}}" type="primary" custom-class="btn-class" bind:click="reFill">
+              重新填报</van-button>
             </view>
           </van-collapse-item>
         </view>
@@ -21,3 +24,4 @@
   </van-panel>
 </view>
 <van-toast id="van-toast" />
+<van-dialog id="van-dialog" />

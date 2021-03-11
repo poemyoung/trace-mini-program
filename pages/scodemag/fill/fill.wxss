@@ -3,4 +3,5 @@
   text-align: center;
   margin: 2vh 0 2vh 0;
   font-size: 1.2em;
+  color: #0c88b4;
 }

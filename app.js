@@ -37,7 +37,7 @@ App({
   globalData: {
     userInfo: null,
     userId: "",
-    urlBase: "https://127.0.0.1:443",
+    urlBase: "https://www.poemyoung.xyz",
     urlMap:{
       login : "/miniapi/login",
       userinfofill : "/miniapi/isfill",
@@ -48,7 +48,9 @@ App({
       user_info_get : "/miniapi/getuserbaseinfo",
       qrcode_mag : "/miniapi/qrcodemanage",
       qrcode_del : "/miniapi/delqrcodemanage",
-      user_exists : "/miniapi/userexists"
+      user_exists : "/miniapi/userexists",
+      exist_user_fill : "/miniapi/exeuserfill",
+      relate_add : "/miniapi/addrelate"
     }
   },
   getUserInfo : function(data) {

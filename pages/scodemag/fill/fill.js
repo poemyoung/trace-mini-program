@@ -2,6 +2,7 @@
 var QQMapWX = require('../../../libs/qqmap-wx-jssdk.js');
 var qqmapsdk;
 const app = getApp();
+import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast'
 Page({
 
   /**
@@ -50,50 +51,54 @@ Page({
 
  wxReqSubmit : function(sym_type) {
     var _this = this;
-    wx.request({
-      url: app.globalData.urlBase + app.globalData.urlMap.fill,
-      header : {
-        'content-type': 'application/json'
-      },
-      method :'POST',
-      data : {
-        userId : app.globalData.userId,
-        name : _this.data.name,
-        idCard : _this.data.cardId,
-        phone : _this.data.phone,
-        location : {
-          province : _this.data.province,
-          city : _this.data.city,
-          county : _this.data.county,
-          detailAddr : _this.data.detail_addr
-        },
-        symptom : {
-          isSymptom : _this.data.symptom == "1",
-          type : sym_type
-        },
-        foreign : _this.data.foreign == "1",
-        highRisk : _this.data.high_risk == "1",
-        contactPatient : _this.data.confirm_patient == "1",
-        bodyHeat : isNaN(_this.data.body_heat) ? parseFloat(_this.data.body_heat) : _this.data.body_heat
-      },
-      success : function(res) {
-        if(res.data.code == "1"){
-          wx.navigateTo({
-            url: '../index/index',
-          })
-        }else {
-          wx.showToast({
-            title: '参数有误',
-          })
-        }
-      },
-      fail : function(res) {
-        wx.showToast({
-          title: '提交错误',
-          icon : error
+    wx.getStorage({
+      key: 'userId',
+      success : function(res1) {
+        wx.request({
+          url: app.globalData.urlBase + app.globalData.urlMap.exist_user_fill + "?id=" + res1.data,
+          header : {
+            'content-type': 'application/json'
+          },
+          method :'POST',
+          data : {
+            userId : '',
+            name : _this.data.name,
+            idCard : _this.data.cardId,
+            phone : _this.data.phone,
+            location : {
+              province : _this.data.province,
+              city : _this.data.city,
+              county : _this.data.county,
+              detailAddr : _this.data.detail_addr
+            },
+            symptom : {
+              isSymptom : _this.data.symptom == "1",
+              type : sym_type
+            },
+            foreign : _this.data.foreign == "1",
+            highRisk : _this.data.high_risk == "1",
+            contactPatient : _this.data.confirm_patient == "1",
+            bodyHeat : isNaN(_this.data.body_heat) ? parseFloat(_this.data.body_heat) : _this.data.body_heat
+          },
+          success : function(res) {
+            if(res.data.code == "1"){
+              wx.navigateTo({
+                url: '../../scode/scode',
+              })
+            }else {
+              Toast.fail("参数有误")
+            }
+          },
+          fail : function(res) {
+            wx.showToast({
+              title: '提交错误',
+              icon : error
+            })
+          }
         })
       }
     })
+   
   },
   submit:function(event) {
       // 收集并转换信息
