@@ -13,6 +13,11 @@ Page({
     code_count: 5,
     panel_array: []
   },
+  index : function(event) {
+      wx.reLaunch({
+        url: '../index/index',
+      })
+  },
   addNew : function(event) {
       wx.navigateTo({
         url: '../scodemag/add/add'

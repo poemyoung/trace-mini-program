@@ -1,5 +1,6 @@
 <!--pages/scode/scode.wxml-->
 <view class="body-container">
+  <van-button block icon="wap-home" bind:click="index">返回首页</van-button>
   <van-panel title="您所管理的静态码" use-footer-slot>
     <view slot="footer">
       <van-collapse accordion value="{{ activeName }}" bind:change="panelOnChange">
@@ -9,7 +10,8 @@
               <van-cell title="{{item.userName}}" value="{{item.idCard}}" border="{{false}}" />
             </view>
             <view class='qr-class'>
-              <van-image width="15rem" height="15rem" fit="contain" src="{{item.qrCode}}" />
+              <van-image width="15rem" height="15rem" fit="contain" src="{{item.qrCode}}" 
+              show-menu-by-longpress/>
               <van-button icon='delete'
               data-idx="{{index}}" type="danger" custom-class="btn-class" bind:click="del">删除</van-button>
               <van-button icon='add-square'
@@ -19,6 +21,7 @@
           </van-collapse-item>
         </view>
         <van-button block icon="add" bind:click="addNew">添加成员</van-button>
+
       </van-collapse>
     </view>
   </van-panel>
