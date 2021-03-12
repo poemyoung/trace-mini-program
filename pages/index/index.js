@@ -18,38 +18,29 @@ Page({
      wx.getLocation({
        type : "gcj02",
        success : function(res) {
-         let userId = 0;
          wx.getStorage({
             key: 'userId',
-            success : function(res) {
-              userId = res.data;
+            success : function(res1) {
+              wx.request({
+                url: app.globalData.urlBase + app.globalData.urlMap.loc_load,
+                method: 'POST',
+                data : {
+                 latitude : res.latitude,
+                 longitude : res.longitude,
+                 userId : res1.data
+                },
+                success: function(res) {
+                  Toast.success('定位成功');
+                },
+                fail: function(res) {
+                 Toast.fail("服务器错误！")
+                }
+              })
             }
-         })
-         wx.request({
-           url: app.globalData.urlBase + app.globalData.urlMap.loc_load,
-           method: 'POST',
-           data : {
-            latitude : res.latitude,
-            longitude : res.longitude,
-            userId : userId
-           },
-           success: function(res) {
-             console.log(res)
-             Toast.success('定位成功');
-           },
-           fail: function(res) {
-            wx.showToast({
-              title: '服务器错误',
-              icon: 'none'
-            })
-           }
          })
        },
        fail: function(res){
-         wx.showToast({
-           title: '定位失败',
-           icon:'none'
-         })
+         Toast.fail("定位失败")
        }
      })
   },
@@ -101,12 +92,12 @@ Page({
       onlyFromCamera: true,
       scanType : ['qrCode'],
       success : function(res) {
-        let qr_res = res;
+        let qr_res = res.result;
        wx.request({
          url: app.globalData.urlBase + app.globalData.urlMap.qr_upload,
          method : 'POST',
          data : {
-           res : qr_res
+           userId : qr_res
          },
          success : function(r) {
             wx.navigateTo({
@@ -120,7 +111,6 @@ Page({
            })
          }
        })
-        console.log(res);
       },
       fail : function(res) {
         wx.showToast({

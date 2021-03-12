@@ -1,6 +1,7 @@
 // pages/hcode/hcode.js
 const app = getApp();
 var util = require('../../utils/util.js')
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
 Page({
   /**
    * 页面的初始数据
@@ -16,7 +17,36 @@ Page({
       last_locate_str : ''
   },
   locate : function(event) {
-      this.onLoad(event);
+    let _this = this;
+     wx.getLocation({
+       type : "gcj02",
+       success : function(res) {
+         wx.getStorage({
+            key: 'userId',
+            success : function(res1) {
+              wx.request({
+                url: app.globalData.urlBase + app.globalData.urlMap.loc_load,
+                method: 'POST',
+                data : {
+                 latitude : res.latitude,
+                 longitude : res.longitude,
+                 userId : res1.data
+                },
+                success: function(res) {
+                  Toast.success('定位成功');
+                  _this.onLoad(event);
+                },
+                fail: function(res) {
+                 Toast.fail("服务器错误！")
+                }
+              })
+            }
+         })
+       },
+       fail: function(res){
+         Toast.fail("定位失败")
+       }
+     })
   },
 
   /**
