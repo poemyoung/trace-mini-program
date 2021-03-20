@@ -5,7 +5,57 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+      headline:'',
+      imgList:[
+      ],
+      content:''
+  },
+  submit: function() {
+      this.upToCloud();
+  },
+  upToCloud:function() {
+    wx.cloud.init();
+    const images = this.data.imgList;
+    if(!images.length) {
+      return ;
+    }else {
+        images.map((file,index) => {
+          wx.cloud.uploadFile({
+            cloudPath: 'test1.png',
+            filePath: file.url,
+            success: res => {
+              console.log(res);
+            },
+            fail: res => {
+              console.log(res);
+            }
+          })
+        })
+    }
+  },
+  deleteImg:function(event) {
+    const imgDel = event.detail;
+    let index = imgDel.index;
+    let arrTmp = this.data.imgList;
+    arrTmp.splice(
+      index,1
+    )
+    this.setData({
+      imgList: arrTmp
+    })
+    
+  },
+  afterRead:function(event) {
+      const img = event.detail;
+      let imgObj = {};
+      imgObj.url = img.file.url;
+      imgObj.deletable = true
+      imgObj.index = img.index;
+      let fl = this.data.imgList;
+      fl.push(imgObj);
+      this.setData({
+        imgList: fl
+      })
   },
 
   /**

@@ -1,1 +1,14 @@
 /* pages/worksys/submit/submit.wxss */
+.btn-container {
+  width: 150rpx;
+}
+.ipt-container{
+  height: 600rpx;
+  padding-top: 20rpx;
+}
+.img-load-container {
+  margin-top: 20rpx;
+}
+.ipt{
+  margin-bottom: 20rpx;
+}

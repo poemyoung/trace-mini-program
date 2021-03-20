@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/worksys/submit/submit",
     "pages/index/index",
     "pages/logs/logs",
     "pages/userinfo/userinfo",
@@ -9,7 +10,7 @@
     "pages/scan/scan",
     "pages/hcode/hcode",
     "pages/scode/scode",
-    "pages/worksys/submit/submit",
+
     "pages/pop/popidx/popidx",
     "pages/ckhigh/ckhighidx/ckhighidx",
     "pages/cknews/cknewsidx/cknewsidx",
@@ -57,7 +58,9 @@
     "van-collapse-item": "@vant/weapp/collapse-item/index",
     "van-empty": "@vant/weapp/empty/index",
     "van-divider": "@vant/weapp/divider/index",
-    "van-dialog": "@vant/weapp/dialog/index"
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "van-uploader": "@vant/weapp/uploader/index"
   },
   "requiredBackgroundModes": [
     "location"
