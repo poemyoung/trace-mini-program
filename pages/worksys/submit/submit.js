@@ -39,9 +39,12 @@ Page({
           },
           success: function (d) {
             Toast.success("提交成功！")
-            wx.navigateBack({
-              delta: 1,
-            })
+            setTimeout(() => {
+              wx.navigateBack({
+                delta: 2,
+              })
+            },1000)
+           
           },
           fail: function (d) {
             Toast.fail("网络未连接！")

@@ -1,1 +1,38 @@
 /* pages/tabs/message/message.wxss */
+.uptab-class {
+  margin-top: 30rpx;
+}
+.downtab-class {
+  padding-top: 20rpx;
+}
+.van-swipe-cell__left,
+.van-swipe-cell__right {
+  display: inline-block;
+  width: 65px;
+  height: 44px;
+  font-size: 15px;
+  line-height: 44px;
+  padding-top:1.5em;
+  color: #fff;
+  text-align: center;
+  background-color: #f44;
+}
+.cell-class {
+  height:6.6em;
+  margin-top: 0.5em;
+}
+.headline-class {
+  font-weight: 800;
+  font-size: 1.3em;
+  margin-bottom: 0.2em;
+}
+.content-class {
+  font-weight: 300;
+}
+.display-class {
+  margin-top: 20rpx;
+}
+Page {
+  touch-action: none;
+  background-color: #f6f6f6;
+}

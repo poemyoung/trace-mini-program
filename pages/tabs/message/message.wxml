@@ -1,8 +1,49 @@
 <!--pages/tabs/message/message.wxml-->
 <view>
   <van-tabbar active="{{ active }}" bind:change="tabChange">
-  <van-tabbar-item icon="home-o">首页</van-tabbar-item>
-  <van-tabbar-item icon="chat-o">消息</van-tabbar-item>
-  <van-tabbar-item icon="friends-o">我的</van-tabbar-item>
-</van-tabbar>
+    <van-tabbar-item icon="home-o">首页</van-tabbar-item>
+    <van-tabbar-item icon="chat-o">消息/工单</van-tabbar-item>
+    <van-tabbar-item icon="friends-o">我的</van-tabbar-item>
+  </van-tabbar>
+</view>
+
+<van-tabs type="card" bind:change="headChange" active="{{ headActive }}" custom-class="uptab-class">
+  <van-tab title="我的工单">
+  </van-tab>
+  <van-tab title="我的消息">
+  </van-tab>
+</van-tabs>
+<view style="display:{{headActive == 0 ? 'block' : 'none'}}" class="downtab-class">
+  <van-tabs active="{{ woActive }}" bind:change="woChange" id="ts">
+    <van-tab title="全部"></van-tab>
+    <van-tab title="未处理">待处理</van-tab>
+    <van-tab title="待我处理">待我处理</van-tab>
+  </van-tabs>
+</view>
+<view style="display:{{headActive == 1 ? 'block' : 'none'}}">
+  <van-tabs active="{{ msgActive }}" bind:change="msgChange">
+    <van-tab title="已读">已读</van-tab>
+    <van-tab title="未读">未读</van-tab>
+  </van-tabs>
+</view>
+<template name="list">
+    
+</template>
+
+<view style="display:{{woActive == 0 ? 'block' : 'none'}}" class="display-class">
+  <view wx:for="{{work_orders_all}}" wx:key="aid">
+    <van-swipe-cell right-width="{{ 65 }}" async-close>
+      <van-cell-group>
+        <van-cell size="large" custom-class="cell-class" is-link>
+            <view slot="title">
+              <view style="margin-bottom:0.4em">
+              <rich-text space="emsp" class="headline-class">{{item.headLine}}</rich-text>
+            </view>
+              <rich-text space="emsp" class="content-class">{{item.content}}</rich-text>
+            </view>
+        </van-cell>
+      </van-cell-group>
+      <view slot="right">删除</view>
+    </van-swipe-cell>
+  </view>
 </view>
