@@ -1,5 +1,6 @@
 // pages/worksys/submit/submit.js
 import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast'
+const app = getApp();
 Page({
 
   /**
@@ -9,6 +10,7 @@ Page({
     headline: '',
     imgList: [],
     content: '',
+    show: false
   },
   cancel: function (event) {
     wx.navigateBack({
@@ -16,12 +18,43 @@ Page({
     })
   },
   submit: function () {
+    this.setData({
+      show: true
+    })
     this.upToCloud();
   },
-  submitWorkOrder: function(imgIDs) {
-      console.log(imgIDs);
-      console.log(this.data.headline);
-      console.log(this.data.content);
+  submitWorkOrder: function (imgIDs) {
+    let _this = this;
+    wx.getStorage({
+      key: 'userId',
+      success: function (res) {
+        wx.request({
+          url: app.globalData.urlBase + app.globalData.urlMap.article_submit,
+          method: 'POST',
+          data: {
+            "userId": res.data,
+            "headLine": _this.data.headline,
+            "content": _this.data.content,
+            "imagePaths": imgIDs
+          },
+          success: function (d) {
+            Toast.success("提交成功！")
+            wx.navigateBack({
+              delta: 1,
+            })
+          },
+          fail: function (d) {
+            Toast.fail("网络未连接！")
+          },
+          complete: function (d) {
+            _this.setData({
+              show: false
+            })
+          }
+        })
+      }
+    })
+
   },
   upToCloud: function () {
     wx.cloud.init();
@@ -38,9 +71,9 @@ Page({
       });
 
       Promise.all(tasks)
-      .then((res) => {
+        .then((res) => {
           var tmp = [];
-          res.map((sRes,index) => {
+          res.map((sRes, index) => {
             console.log(sRes)
             if (sRes.statusCode == 204) {
               let fid = sRes.fileID;
@@ -50,10 +83,10 @@ Page({
             }
           })
           _this.submitWorkOrder(tmp);
-      })
-      .catch((res) => {
-        Toast.fail("图片上传失败！")
-      })
+        })
+        .catch((res) => {
+          Toast.fail("图片上传失败！")
+        })
     }
   },
   uuid: function () {

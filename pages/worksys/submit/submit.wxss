@@ -12,3 +12,9 @@
 .ipt{
   margin-bottom: 20rpx;
 }
+.loading-class {
+  position: absolute;
+  top:30%;
+  left: 45%;
+  z-index: 5;
+}
