@@ -2,14 +2,14 @@
 <van-sticky>
   <van-cell border="{{false}}">
     <view slot="title">
-      <van-button type="default" size="normal">取消</van-button>
+      <van-button type="default" size="normal" bind:click="cancel">取消</van-button>
     </view>
     <van-button type="primary" round custom-class="btn-container" bind:click="submit">提交</van-button>
   </van-cell>
 </van-sticky>
 <van-cell-group custom-class="ipt-container" border="{{false}}">
   <van-field
-    model:value="{{ value }}"
+    model:value="{{ headline }}"
     placeholder="请输入标题（至少4字）"
     size="large"
   />
@@ -29,3 +29,4 @@
 </van-cell-group>
 <van-uploader file-list="{{ imgList }}" bind:after-read="afterRead" bind:delete="deleteImg"
 class="img-load-container" preview-size="235rpx"/>
+<van-toast id="van-toast" />

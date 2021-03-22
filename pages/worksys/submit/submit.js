@@ -1,61 +1,97 @@
 // pages/worksys/submit/submit.js
+import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      headline:'',
-      imgList:[
-      ],
-      content:''
+    headline: '',
+    imgList: [],
+    content: '',
   },
-  submit: function() {
-      this.upToCloud();
+  cancel: function (event) {
+    wx.navigateBack({
+      delta: 1,
+    })
   },
-  upToCloud:function() {
+  submit: function () {
+    this.upToCloud();
+  },
+  submitWorkOrder: function(imgIDs) {
+      console.log(imgIDs);
+      console.log(this.data.headline);
+      console.log(this.data.content);
+  },
+  upToCloud: function () {
     wx.cloud.init();
     const images = this.data.imgList;
-    if(!images.length) {
-      return ;
-    }else {
-        images.map((file,index) => {
-          wx.cloud.uploadFile({
-            cloudPath: 'test1.png',
-            filePath: file.url,
-            success: res => {
-              console.log(res);
-            },
-            fail: res => {
-              console.log(res);
+    let _this = this;
+    if (!images.length) {
+      this.submitWorkOrder([]);
+    } else {
+      const tasks = images.map((file, index) => {
+        return wx.cloud.uploadFile({
+          cloudPath: _this.uuid() + '.png',
+          filePath: file.url
+        })
+      });
+
+      Promise.all(tasks)
+      .then((res) => {
+          var tmp = [];
+          res.map((sRes,index) => {
+            console.log(sRes)
+            if (sRes.statusCode == 204) {
+              let fid = sRes.fileID;
+              tmp.push(fid);
+            } else {
+              Toast.fail("图片上传失败！")
             }
           })
-        })
+          _this.submitWorkOrder(tmp);
+      })
+      .catch((res) => {
+        Toast.fail("图片上传失败！")
+      })
     }
   },
-  deleteImg:function(event) {
+  uuid: function () {
+    var s = [];
+    var hexDigits = "0123456789abcdef";
+    for (var i = 0; i < 36; i++) {
+      s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+    }
+    s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
+    s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
+    s[8] = s[13] = s[18] = s[23] = "-";
+
+    var uuid = s.join("");
+    return uuid;
+  },
+  deleteImg: function (event) {
     const imgDel = event.detail;
     let index = imgDel.index;
     let arrTmp = this.data.imgList;
     arrTmp.splice(
-      index,1
+      index, 1
     )
     this.setData({
       imgList: arrTmp
     })
-    
+
   },
-  afterRead:function(event) {
-      const img = event.detail;
-      let imgObj = {};
-      imgObj.url = img.file.url;
-      imgObj.deletable = true
-      imgObj.index = img.index;
-      let fl = this.data.imgList;
-      fl.push(imgObj);
-      this.setData({
-        imgList: fl
-      })
+  afterRead: function (event) {
+    const img = event.detail;
+    let imgObj = {};
+    imgObj.url = img.file.url;
+    imgObj.deletable = true
+    imgObj.index = img.index;
+    let fl = this.data.imgList;
+    fl.push(imgObj);
+    this.setData({
+      imgList: fl
+    })
   },
 
   /**
