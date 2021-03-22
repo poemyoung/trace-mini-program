@@ -15,23 +15,20 @@
 </van-tabs>
 <view style="display:{{headActive == 0 ? 'block' : 'none'}}" class="downtab-class">
   <van-tabs active="{{ woActive }}" bind:change="woChange" id="ts">
-    <van-tab title="全部"></van-tab>
-    <van-tab title="未处理">待处理</van-tab>
-    <van-tab title="待我处理">待我处理</van-tab>
+    <van-tab title="已处理"></van-tab>
+    <van-tab title="未处理"></van-tab>
+    <van-tab title="待我处理"></van-tab>
   </van-tabs>
 </view>
-<view style="display:{{headActive == 1 ? 'block' : 'none'}}">
+<view style="display:{{headActive == 1 ? 'block' : 'none'}}" class="downtab-class">
   <van-tabs active="{{ msgActive }}" bind:change="msgChange">
-    <van-tab title="已读">已读</van-tab>
-    <van-tab title="未读">未读</van-tab>
+    <van-tab title="已读"></van-tab>
+    <van-tab title="未读"></van-tab>
   </van-tabs>
 </view>
-<template name="list">
-    
-</template>
 
-<view style="display:{{woActive == 0 ? 'block' : 'none'}}" class="display-class">
-  <view wx:for="{{work_orders_all}}" wx:key="aid">
+<template name="list">
+  <view wx:for="{{articles}}" wx:key="aid">
     <van-swipe-cell right-width="{{ 65 }}" async-close>
       <van-cell-group>
         <van-cell size="large" custom-class="cell-class" is-link>
@@ -43,7 +40,11 @@
             </view>
         </van-cell>
       </van-cell-group>
-      <view slot="right">删除</view>
+      <view slot="right">{{desc}}</view>
     </van-swipe-cell>
   </view>
+</template>
+
+<view >
+  <template is="list" data="{{articles,desc}}"/>
 </view>
