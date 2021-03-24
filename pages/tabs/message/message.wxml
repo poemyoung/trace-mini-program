@@ -49,3 +49,4 @@
 <view >
   <template is="list" data="{{articles,desc}}"/>
 </view>
+<van-toast id="van-toast" />

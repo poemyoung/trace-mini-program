@@ -1,4 +1,7 @@
 // pages/tabs/message/message.js
+import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast'
+import util from '../../../utils/util'
+const app = getApp();
 Page({
 
   /**
@@ -16,7 +19,7 @@ Page({
         aid: 123,
         headLine: "健康码突然变红问题解决",
         content: "您好，我想问一下我的健康码为什么突然变色了。我最近都在外地没有走动，是因为我们小区出事了吗？",
-        time:'3月19日'
+        time:'2021/3/19 22:03'
       },
       {
         aid: 345,
@@ -31,7 +34,11 @@ Page({
         time:'3月19日'
       }
     ],
-
+    handled: [],
+    unhandle: [],
+    mehandle: [],
+    readed: [],
+    unread:[],
   },
   woChange: function (event) {
     let _this = this;
@@ -107,13 +114,40 @@ Page({
   onReady: function () {
 
   },
+  classifyData : function(articles) {
 
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     // 发起请求
     let _this = this;
+    wx.getStorage({
+      key: 'userId',
+      success:function(storeData) {
+          wx.request({
+            url: app.globalData.urlBase + app.globalData.urlMap.article_get + "?userId="+storeData.data,
+            success:function(res) {
+              console.log(res);
+              // 分类设置所有data
+              if(res.data.code == 1) {
+                _this.classifyData(res.data.data);
+              }else{
+                Toast.fail("服务器错误！")
+              }
+            },
+            fail:function(res) {
+              Toast.fail("服务器错误")
+            }
+          })
+      },
+      fail:function(res) {
+        Toast.fail(res.data);
+      }
+    })
+
+
     this.setData({
       articles: _this.data.work_orders_all,
       desc: '删除'
