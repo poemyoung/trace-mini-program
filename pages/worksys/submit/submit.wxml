@@ -14,7 +14,6 @@
 </van-sticky>
 <van-cell-group custom-class="ipt-container" border="{{false}}">
   <van-field model:value="{{ headline }}" placeholder="请输入标题（至少4字）" size="large" />
-
   <van-field model:value="{{ content }}" placeholder="请输入内容（最多500字）" input-class="ipt-container" maxlength="{{500}}"
     show-word-limit autosize type="textarea" class="ipt-container" border="{{false}}" size="large" />
 </van-cell-group>

@@ -1,0 +1,93 @@
+<!--pages/articleshow/workorder/workorder.wxml-->
+<sticky>
+  <view class="headline-container">
+    <van-cell-group>
+      <van-cell size="large" label="评价" style="display:{{status_desc == '已结单' ? 'none' : 'block'}}">
+        <view slot="title">
+          <van-rate value="{{ value }}" bind:change="onChange" />
+        </view>
+        <van-button type="primary" round>结单</van-button>
+      </van-cell>
+
+      <van-cell size="large">
+        <view slot="title">
+          <view class="cell-container">
+            <rich-text space="emsp">{{status_desc}}</rich-text>
+            <rich-text class="value-class" space="emsp" style="color:#57d499;">工单号 {{aid}}</rich-text>
+          </view>
+        </view>
+      </van-cell>
+      <van-cell size="large">
+        <view slot="title">
+          <view class="cell-container">
+            <rich-text space="emsp">标题</rich-text>
+            <rich-text class="value-class" space="emsp">{{headLine}}</rich-text>
+          </view>
+        </view>
+      </van-cell>
+
+      <van-cell size="large">
+        <view slot="title">
+          <view class="cell-container">
+            <rich-text space="emsp">提单时间</rich-text>
+            <rich-text class="value-class" space="emsp">{{submit_time}}</rich-text>
+          </view>
+        </view>
+      </van-cell>
+
+      <van-cell size="large" style="display:{{last_time == '' ? 'none' : block}}">
+        <view slot="title">
+          <view class="cell-container">
+            <rich-text space="emsp">最后回复时间</rich-text>
+            <rich-text class="value-class" space="emsp">{{last_time}}</rich-text>
+          </view>
+        </view>
+      </van-cell>
+
+      <van-cell size="large" style="display:{{status_desc == '已结单' ? 'block' : 'none'}}">
+        <view slot="title">
+          <view class="cell-container">
+            <rich-text space="emsp">评价</rich-text>
+            <van-rate value="{{ eva }}" class="value-class" allow-half readonly color="#ee0a24" />
+          </view>
+        </view>
+      </van-cell>
+    </van-cell-group>
+  </view>
+</sticky>
+
+<view class="content-container" wx:for="{{wos}}" wx:key="aid">
+  <van-row>
+    <van-col span='4'>
+      <view>
+        <van-image round width="2.6em" height="2.6em" src="https://www.poemyoung.xyz/icons/user_head.jpeg"
+          style="display:{{item.whom ? 'block' : 'none'}};" />
+        <van-image round width="2.6em" height="2.6em" src="https://www.poemyoung.xyz/icons/admin_head.png"
+          style="display:{{item.whom ? 'none' : 'block'}};" />
+      </view>
+    </van-col>
+    <van-col span='20'>
+      <view>
+        <rich-text> {{item.content}}</rich-text>
+      </view>
+    </van-col>
+  </van-row>
+  <view wx:for="{{item.images}}" wx:for-item="imgItem" wx:key="index" class="images-container">
+    <van-image width="6em" height="6em" src="{{imgItem}}" custom-class="aimg-container" show-menu-by-longpress />
+  </view>
+  <van-cell border="{{false}}"> 
+    {{item.time}}
+  </van-cell>
+  <van-divider />
+</view>
+
+<van-divider contentPosition="center" textColor="#1989fa" borderColor="#1989fa">继续回复</van-divider>
+<view style="background-color:white">
+  <van-cell-group custom-class="ipt-container" border="{{false}}">
+    <van-field model:value="{{ content }}" placeholder="请输入内容（最多500字）" maxlength="{{500}}" show-word-limit autosize
+      type="textarea" border="{{false}}" size="large" />
+    <van-uploader file-list="{{ imgList }}" bind:after-read="afterRead" bind:delete="deleteImg" preview-size="235rpx" />
+    <van-button type="primary" custom-class="submit-container" block>提交</van-button>
+  </van-cell-group>
+</view>
+<van-toast id="van-toast" />

@@ -37,7 +37,7 @@ App({
   globalData: {
     userInfo: null,
     userId: "",
-    urlBase: "https://localhost:443",
+    urlBase: "https://www.poemyoung.xyz",
     urlMap:{
       login : "/miniapi/login",
       userinfofill : "/miniapi/isfill",

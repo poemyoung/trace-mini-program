@@ -15,50 +15,62 @@ Page({
     headActive: 0,
     articles: [],
     desc: '',
-    work_orders_all: [{
-        aid: 123,
-        headLine: "健康码突然变红问题解决",
-        content: "您好，我想问一下我的健康码为什么突然变色了。我最近都在外地没有走动，是因为我们小区出事了吗？",
-        time:'2021/3/19 22:03'
-      },
-      {
-        aid: 345,
-        headLine: "健康码突然变红问题解决",
-        content: "您好，我想问一下我的健康码为什么突然变色了。我最近都在外地没有走动，是因为我们小区出事了吗？",
-        time:'3月19日'
-      },
-      {
-        aid: 346,
-        headLine: "健康码突然变红问题解决",
-        content: "您好，我想问一下我的健康码为什么突然变色了。我最近都在外地没有走动，是因为我们小区出事了吗？",
-        time:'3月19日'
-      }
-    ],
     handled: [],
     unhandle: [],
     mehandle: [],
     readed: [],
-    unread:[],
+    unread: [],
+  },
+  checkDetail:function(event) {
+      let aid = event.currentTarget.dataset.aid;
+      let article = event.currentTarget.dataset.article;
+      let params = "?aid="+aid;
+      if(article) {
+        wx.navigateTo({
+          url: '../../articleshow/article/article' + params
+        })
+      }else {
+        wx.navigateTo({
+          url: '../../articleshow/workorder/workorder' + params
+        })
+      }
+  },
+  deal: function(event) {
+    let aid = event.currentTarget.dataset.aid;
+    let type = event.currentTarget.dataset.type;
+    // 处理右滑后事件
   },
   woChange: function (event) {
     let _this = this;
+    this.setArticles(0, event.detail.index);
     this.setData({
       woActive: event.detail.index,
-      desc : _this.setDesc(0,event.detail.index)
+      desc: _this.setDesc(0, event.detail.index)
+    })
+  },
+  msgChange: function (event) {
+    let _this = this;
+    this.setArticles(1, event.detail.index);
+    this.setData({
+      msgActive: event.detail.index,
+      desc: _this.setDesc(1, event.detail.index)
     })
   },
   headChange: function (event) {
+    let _this = this;
     this.setData({
       headActive: event.detail.index
     })
-    if (event.detail == 0) {
+    if (event.detail.index == 0) {
       this.setData({
-        woActive: 1
+        woActive: 0,
       })
+      this.setArticles(0,0);
     } else {
       this.setData({
         msgActive: 0
       })
+      this.setArticles(1,0);
     }
   },
   tabChange: function (event) {
@@ -75,6 +87,44 @@ Page({
         wx.redirectTo({
           url: '../mine/mine',
         })
+    }
+  },
+  setArticles: function (upIdx, downIdx) {
+    let _this = this;
+    if (upIdx == 0) {
+      switch (downIdx) {
+        case 0:
+          _this.setData({
+            articles: _this.data.handled
+          })
+          break;
+        case 1:
+          _this.setData({
+            articles: _this.data.unhandle
+          })
+          break;
+        case 2:
+          _this.setData({
+            articles: _this.data.mehandle
+          })
+          break;
+        default:
+          break;
+      }
+    } else {
+      switch (downIdx) {
+        case 0:
+          _this.setData({
+            articles: _this.data.readed
+          })
+          break;
+        case 1:
+          _this.setData({
+            articles: _this.data.unread
+          })
+        default:
+          break;
+      }
     }
   },
   setDesc: function (upIdx, downIdx) {
@@ -114,8 +164,58 @@ Page({
   onReady: function () {
 
   },
-  classifyData : function(articles) {
+  classifyData: function (articles) {
+    let _this = this;
+    let uH = [],
+      uR = [],
+      h = [],
+      mH = [],
+      r = [];
+    // 遍历articles，进行分类
+    articles.map((article, index) => {
+      article.time = util.formatTimeByMail(new Date(article.time));
+      if (article.headLine.length > 9) {
+        article.headLine = article.headLine.substr(0, 9) + "...";
+      }
+      if (article.content.length > 40) {
+        article.content = article.content.substr(0, 40) + "...";
+      }
+      if (article.article) {
+        // 文章
+        switch (article.status) {
+          case 0:
+            r.push(article);
+            break;
+          case 1:
+            uR.push(article);
+            break;
+          default:
+            break;
+        }
+      } else {
+        //  工单
+        switch (article.status) {
+          case 0:
+            h.push(article);
+            break;
+          case 1:
+            mH.push(article);
+            break;
+          case 2:
+            uH.push(article);
+            break;
+        }
+      }
+    });
 
+    _this.setData({
+      handled: h,
+      unhandle: uH,
+      mehandle: mH,
+      unread: uR,
+      readed: r,
+      articles: h
+    })
   },
   /**
    * 生命周期函数--监听页面显示
@@ -125,31 +225,27 @@ Page({
     let _this = this;
     wx.getStorage({
       key: 'userId',
-      success:function(storeData) {
-          wx.request({
-            url: app.globalData.urlBase + app.globalData.urlMap.article_get + "?userId="+storeData.data,
-            success:function(res) {
-              console.log(res);
-              // 分类设置所有data
-              if(res.data.code == 1) {
-                _this.classifyData(res.data.data);
-              }else{
-                Toast.fail("服务器错误！")
-              }
-            },
-            fail:function(res) {
-              Toast.fail("服务器错误")
+      success: function (storeData) {
+        wx.request({
+          url: app.globalData.urlBase + app.globalData.urlMap.article_get + "?userId=" + storeData.data,
+          success: function (res) {
+            // 分类设置所有data
+            if (res.data.code == 1) {
+              _this.classifyData(res.data.data);
+            } else {
+              Toast.fail("服务器错误！")
             }
-          })
+          },
+          fail: function (res) {
+            Toast.fail("服务器错误")
+          }
+        })
       },
-      fail:function(res) {
+      fail: function (res) {
         Toast.fail(res.data);
       }
     })
-
-
     this.setData({
-      articles: _this.data.work_orders_all,
       desc: '删除'
     })
   },

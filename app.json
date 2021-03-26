@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/tabs/message/message",
+    "pages/articleshow/workorder/workorder",
     "pages/index/index",
+    "pages/tabs/message/message",
     "pages/logs/logs",
     "pages/userinfo/userinfo",
     "pages/symptom/symtomcos",
-
     "pages/tabs/mine/mine",
     "pages/scan/scan",
     "pages/hcode/hcode",
@@ -17,8 +17,8 @@
     "pages/ckpolicy/ckpolicyidx/ckpolicyidx",
     "pages/threadup/tdupidx/tdupidx",
     "pages/scodemag/add/add",
-    "pages/scodemag/fill/fill"
-
+    "pages/scodemag/fill/fill",
+    "pages/articleshow/article/article"
   ],
   "permission": {
     "scope.userLocation": {
@@ -65,7 +65,8 @@
     "van-overlay": "@vant/weapp/overlay/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
-    "van-swipe-cell": "@vant/weapp/swipe-cell/index"
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-rate": "@vant/weapp/rate/index"
   },
   "requiredBackgroundModes": [
     "location"
