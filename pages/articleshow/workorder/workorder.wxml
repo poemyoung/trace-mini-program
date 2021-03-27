@@ -17,11 +17,12 @@
           </view>
         </view>
       </van-cell>
+
       <van-cell size="large">
         <view slot="title">
           <view class="cell-container">
             <rich-text space="emsp">标题</rich-text>
-            <rich-text class="value-class" space="emsp">{{headLine}}</rich-text>
+              <rich-text class="value-class" space="emsp">{{headLine}}</rich-text>
           </view>
         </view>
       </van-cell>
@@ -75,7 +76,7 @@
   <view wx:for="{{item.images}}" wx:for-item="imgItem" wx:key="index" class="images-container">
     <van-image width="6em" height="6em" src="{{imgItem}}" custom-class="aimg-container" show-menu-by-longpress />
   </view>
-  <van-cell border="{{false}}"> 
+  <van-cell border="{{false}}">
     {{item.time}}
   </van-cell>
   <van-divider />

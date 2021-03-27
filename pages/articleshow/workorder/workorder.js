@@ -1,65 +1,20 @@
 // pages/articleshow/workorder/workorder.js
 import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast'
+import util from '../../../utils/util'
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    wos: [{
-        aid: "2",
-        headLine: "",
-        content: "这是相关的内容",
-        whom: true,
-        time: '2021-03-24 17:39',
-        images: [
-          'http://tmp/BfdWmpyFZiCPb3adceb50d050860aa7bcccb154df6d6.png',
-          'http://tmp/kmZ9OPP1jFJsf8eab036b5bf9f7703fadac45bd7db62.png'
-        ]
-      }, {
-        aid: "3",
-        headLine: "",
-        content: "这是相关的内容，可能会很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长哦",
-        whom: false,
-        time: '2021-03-24 17:39',
-        images: [
-          'http://tmp/BfdWmpyFZiCPb3adceb50d050860aa7bcccb154df6d6.png',
-          'http://tmp/kmZ9OPP1jFJsf8eab036b5bf9f7703fadac45bd7db62.png',
-          'http://tmp/BfdWmpyFZiCPb3adceb50d050860aa7bcccb154df6d6.png',
-          'http://tmp/BfdWmpyFZiCPb3adceb50d050860aa7bcccb154df6d6.png',
-          'http://tmp/BfdWmpyFZiCPb3adceb50d050860aa7bcccb154df6d6.png',
-          'http://tmp/BfdWmpyFZiCPb3adceb50d050860aa7bcccb154df6d6.png'
-        ]
-      },
-      {
-        aid: "4",
-        headLine: "",
-        content: "这是相关的内容，可能会很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长哦",
-        whom: false,
-        time: '2021-03-24 17:39'
-      },
-      {
-        aid: "5",
-        headLine: "",
-        content: "这是相关的内容，可能会很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长哦",
-        whom: false,
-        time: '2021-03-24 17:39'
-      },
-      {
-        aid: "6",
-        headLine: "",
-        content: "这是相关的内容，可能会很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长哦",
-        whom: false,
-        time: '2021-03-24 17:39'
-      }
-    ],
-    headLine: '这是一个headLine很长很长很长',
-    submit_time: '2021-03-25 17:38',
-    status_desc: '未结单',
-    last_time: '2021-03-25 17:38',
-    aid: '2000000',
-    eva: 2.5,
-    imgList:[]
+    wos: [],
+    headLine: '',
+    submit_time: '',
+    status_desc: '',
+    last_time: '',
+    aid: '',
+    eva: 0,
   },
 
   downLoadImages: function (images) {
@@ -78,24 +33,67 @@ Page({
     let _this = this
     let aid = options.aid;
     wx.cloud.init();
-    const downLoadTask = this.downLoadImages(['cloud://wenrun-book-6666.7765-wenrun-book-6666-1300001131/cfd0c69d-fe90-4321-86c0-3ebddc4e3d31.png', 'cloud://wenrun-book-6666.7765-wenrun-book-6666-1300001131/7f4c50bd-81a3-4750-87f0-f2f147a13c81.png'])
-    downLoadTask
-    .then(function (res) {
-      let imgArray = [];
-      console.log(res);
-      res.map((aRes,index) => {
-        if(aRes.statusCode == 200) {
-          imgArray.push(aRes.tempFilePath);
-        }else{
-        Toast.fail("图片不存在！");
+    // 发起请求获取文章详细信息
+    wx.request({
+      url: app.globalData.urlBase + app.globalData.urlMap.article_detail + "?aid=" + aid,
+      success: function (res) {
+        if (res.data.code == 1) {
+          let wo = res.data.data;
+          console.log(wo.wos)
+          let last = util.formatTimeNoSec(new Date(wo.lastTime));
+          let submitTime = util.formatTimeNoSec(new Date(wo.wos[0].time));
+          let headLine = wo.wos[0].headLine;
+          let no = wo.wos[0].aid
+          if (headLine.length > 16) {
+            headLine = headLine.substr(0, 16) + "..."
+          }
+          _this.setData({
+            last_time: last,
+            eva: wo.eva,
+            status_desc: wo.statusDesc,
+            submit_time: submitTime,
+            headLine: headLine,
+            aid: no
+          })
+          // 处理每一篇文章
+          let baseUrl = app.globalData.urlBase;
+          wo.wos.map((workorder, index) => {
+            workorder.time = util.formatTimeNoSec(new Date(workorder.time));
+            // 处理所有image然后重新设置images
+            if (workorder.whom = false) {
+              // 管理员
+              workorder.images.map((img, index) => {
+                workorder.images[index] = baseUrl + img;
+              })
+            } else {
+              // 下载
+              _this.downLoadImages(workorder.images)
+                .then((res) => {
+                  // 建立数组
+                  let arr = [];
+                  res.map((img) => {
+                    if (arr.statusCode == 200) {
+                      arr.push(img.tempFilePath);
+                    }
+                  })
+                  workorder.images = arr;
+                })
+                .catch((res) => {
+                  Toast.fail("图片下载失败")
+                })
+            }
+          })
+          _this.setData({
+            wos: wo.wos
+          })
+        } else {
+          Toast.fail("服务器错误！");
         }
-      })
-      console.log(imgArray);
+      },
+      fail: function (res) {
+        Toast.fail("服务器错误！");
+      }
     })
-    .catch(function(res){
-      Toast.fail("图片不存在！");
-    })
-
   },
 
   /**
