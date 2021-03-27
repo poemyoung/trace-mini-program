@@ -15,6 +15,55 @@ Page({
     last_time: '',
     aid: '',
     eva: 0,
+    rate: 0,
+    new_content:'',
+    imgList:[]
+  },
+  afterRead: function (event) {
+    const imgs = event.detail.file;
+    imgs.map((img,index) => {
+      console.log(img)
+      let imgObj = {};
+      imgObj.url = img.url;
+      imgObj.deletable = true
+      imgObj.index = index;
+      let fl = this.data.imgList;
+      fl.push(imgObj);
+      this.setData({
+        imgList: fl
+      })
+    })
+   
+  },
+  newReply:function(event) {
+    console.log(this.data.new_content);
+    console.log(this.data.imgList);
+  },
+  endWO: function(event) {
+    let _this = this;
+      wx.request({
+        url: app.globalData.urlBase + app.globalData.urlMap.end_work_order,
+        method:'POST',
+        data:{
+          aid : _this.data.aid,
+          eva : _this.data.rate
+        },
+        success: function(event) {
+          wx.navigateBack({
+            delta: 1,
+          })
+        },
+        fail:function(event){
+          console.log(event)
+            Toast.fail("服务器错误！")
+        }
+      })
+  },
+  rateChange:function(event) {
+      const rate  =event.detail;
+      this.setData({
+        rate : rate
+      })
   },
 
   downLoadImages: function (images) {
@@ -35,11 +84,10 @@ Page({
     wx.cloud.init();
     // 发起请求获取文章详细信息
     wx.request({
-      url: app.globalData.urlBase + app.globalData.urlMap.article_detail + "?aid=" + aid,
+      url: app.globalData.urlBase + app.globalData.urlMap.article_detail + "?aid=" + 2,
       success: function (res) {
         if (res.data.code == 1) {
           let wo = res.data.data;
-          console.log(wo.wos)
           let last = util.formatTimeNoSec(new Date(wo.lastTime));
           let submitTime = util.formatTimeNoSec(new Date(wo.wos[0].time));
           let headLine = wo.wos[0].headLine;

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/articleshow/workorder/workorder",
+    "pages/index/index",
     "pages/tabs/message/message",
     "pages/logs/logs",
     "pages/userinfo/userinfo",

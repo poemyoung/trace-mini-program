@@ -118,15 +118,18 @@ Page({
 
   },
   afterRead: function (event) {
-    const img = event.detail;
-    let imgObj = {};
-    imgObj.url = img.file.url;
-    imgObj.deletable = true
-    imgObj.index = img.index;
-    let fl = this.data.imgList;
-    fl.push(imgObj);
-    this.setData({
-      imgList: fl
+    const imgs = event.detail.file;
+    imgs.map((img,index) => {
+      console.log(img)
+      let imgObj = {};
+      imgObj.url = img.url;
+      imgObj.deletable = true
+      imgObj.index = index;
+      let fl = this.data.imgList;
+      fl.push(imgObj);
+      this.setData({
+        imgList: fl
+      })
     })
   },
 

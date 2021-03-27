@@ -4,9 +4,9 @@
     <van-cell-group>
       <van-cell size="large" label="评价" style="display:{{status_desc == '已结单' ? 'none' : 'block'}}">
         <view slot="title">
-          <van-rate value="{{ value }}" bind:change="onChange" />
+          <van-rate value="{{ value }}" bind:change="rateChange" allow-half/>
         </view>
-        <van-button type="primary" round>结单</van-button>
+        <van-button type="primary" round bind:click="endWO">结单</van-button>
       </van-cell>
 
       <van-cell size="large">
@@ -85,10 +85,10 @@
 <van-divider contentPosition="center" textColor="#1989fa" borderColor="#1989fa">继续回复</van-divider>
 <view style="background-color:white">
   <van-cell-group custom-class="ipt-container" border="{{false}}">
-    <van-field model:value="{{ content }}" placeholder="请输入内容（最多500字）" maxlength="{{500}}" show-word-limit autosize
+    <van-field model:value="{{ new_content }}" placeholder="请输入内容（最多500字）" maxlength="{{500}}" show-word-limit autosize
       type="textarea" border="{{false}}" size="large" />
-    <van-uploader file-list="{{ imgList }}" bind:after-read="afterRead" bind:delete="deleteImg" preview-size="235rpx" />
-    <van-button type="primary" custom-class="submit-container" block>提交</van-button>
+    <van-uploader file-list="{{ imgList }}" bind:after-read="afterRead" bind:delete="deleteImg" preview-size="235rpx" multiple/>
+    <van-button type="primary" custom-class="submit-container" block bind:click="newReply">提交</van-button>
   </van-cell-group>
 </view>
 <van-toast id="van-toast" />
