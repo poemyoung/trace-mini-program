@@ -13,27 +13,12 @@ Page({
     woActive: 0,
     msgActive: 1,
     headActive: 0,
-    articles: [],
     desc: '',
     handled: [],
     unhandle: [],
     mehandle: [],
     readed: [],
     unread: [],
-  },
-  checkDetail:function(event) {
-      let aid = event.currentTarget.dataset.aid;
-      let article = event.currentTarget.dataset.article;
-      let params = "?aid="+aid;
-      if(article) {
-        wx.navigateTo({
-          url: '../../articleshow/article/article' + params
-        })
-      }else {
-        wx.navigateTo({
-          url: '../../articleshow/workorder/workorder' + params
-        })
-      }
   },
   deal: function(event) {
     let aid = event.currentTarget.dataset.aid;
@@ -42,7 +27,6 @@ Page({
   },
   woChange: function (event) {
     let _this = this;
-    this.setArticles(0, event.detail.index);
     this.setData({
       woActive: event.detail.index,
       desc: _this.setDesc(0, event.detail.index)
@@ -50,7 +34,6 @@ Page({
   },
   msgChange: function (event) {
     let _this = this;
-    this.setArticles(1, event.detail.index);
     this.setData({
       msgActive: event.detail.index,
       desc: _this.setDesc(1, event.detail.index)
@@ -65,12 +48,10 @@ Page({
       this.setData({
         woActive: 0,
       })
-      this.setArticles(0,0);
     } else {
       this.setData({
         msgActive: 0
       })
-      this.setArticles(1,0);
     }
   },
   tabChange: function (event) {
@@ -87,44 +68,6 @@ Page({
         wx.redirectTo({
           url: '../mine/mine',
         })
-    }
-  },
-  setArticles: function (upIdx, downIdx) {
-    let _this = this;
-    if (upIdx == 0) {
-      switch (downIdx) {
-        case 0:
-          _this.setData({
-            articles: _this.data.handled
-          })
-          break;
-        case 1:
-          _this.setData({
-            articles: _this.data.unhandle
-          })
-          break;
-        case 2:
-          _this.setData({
-            articles: _this.data.mehandle
-          })
-          break;
-        default:
-          break;
-      }
-    } else {
-      switch (downIdx) {
-        case 0:
-          _this.setData({
-            articles: _this.data.readed
-          })
-          break;
-        case 1:
-          _this.setData({
-            articles: _this.data.unread
-          })
-        default:
-          break;
-      }
     }
   },
   setDesc: function (upIdx, downIdx) {
@@ -214,7 +157,6 @@ Page({
       mehandle: mH,
       unread: uR,
       readed: r,
-      articles: h
     })
   },
   /**

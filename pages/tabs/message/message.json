@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    
+    "msg-list":"/components/msglist/msglist"
   }
 }

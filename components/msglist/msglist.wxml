@@ -1,0 +1,18 @@
+<!--pages/components/msglist/msglist.wxml-->
+<view wx:for="{{articles}}" wx:key="id">
+    <van-swipe-cell right-width="{{ 65 }}" async-close>
+      <van-cell-group>
+        <van-cell size="large" custom-class="cell-class" is-link bind:click="checkDetail"
+        data-article="{{item.article}}" data-aid="{{item.id}}">
+          <view slot="title">
+            <view style="margin-bottom:0.4em;display:flex;flex-direction:row;">
+                  <rich-text space="emsp" class="headline-class">{{item.headLine}}</rich-text>
+                  <rich-text class="time-class">{{item.time}}</rich-text>
+            </view>
+            <rich-text space="emsp" class="content-class">{{item.content}}</rich-text>
+          </view>
+        </van-cell>
+      </van-cell-group>
+      <view slot="right" data-type="{{desc}}" data-aid="{{item.id}}" bindtap="deal">{{desc}}</view>
+    </van-swipe-cell>
+  </view>
