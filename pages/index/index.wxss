@@ -1,4 +1,7 @@
 /**index.wxss**/
+.up-text{
+  font-weight: 800;
+}
 .bar {
   font-size: 3em;
 }

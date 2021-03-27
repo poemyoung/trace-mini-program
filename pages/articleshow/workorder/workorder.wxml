@@ -1,5 +1,9 @@
 <!--pages/articleshow/workorder/workorder.wxml-->
 <sticky>
+  <van-overlay show="{{ show }}">
+    <van-loading custom-class="loading-class" vertical color="#1989fa" style="spinner" text-size="18">上传中...
+    </van-loading>
+  </van-overlay>
   <view class="headline-container">
     <van-cell-group>
       <van-cell size="large" label="评价" style="display:{{status_desc == '已结单' ? 'none' : 'block'}}">
@@ -62,9 +66,9 @@
     <van-col span='4'>
       <view>
         <van-image round width="2.6em" height="2.6em" src="https://www.poemyoung.xyz/icons/user_head.jpeg"
-          style="display:{{item.whom ? 'block' : 'none'}};" />
-        <van-image round width="2.6em" height="2.6em" src="https://www.poemyoung.xyz/icons/admin_head.png"
           style="display:{{item.whom ? 'none' : 'block'}};" />
+        <van-image round width="2.6em" height="2.6em" src="https://www.poemyoung.xyz/icons/admin_head.png"
+          style="display:{{item.whom ? 'block' : 'none'}};" />
       </view>
     </van-col>
     <van-col span='20'>
@@ -82,6 +86,7 @@
   <van-divider />
 </view>
 
+<view style = "display:{{status_desc == '已结单' ? 'none' : 'block'}}">
 <van-divider contentPosition="center" textColor="#1989fa" borderColor="#1989fa">继续回复</van-divider>
 <view style="background-color:white">
   <van-cell-group custom-class="ipt-container" border="{{false}}">
@@ -90,5 +95,6 @@
     <van-uploader file-list="{{ imgList }}" bind:after-read="afterRead" bind:delete="deleteImg" preview-size="235rpx" multiple/>
     <van-button type="primary" custom-class="submit-container" block bind:click="newReply">提交</van-button>
   </van-cell-group>
+</view>
 </view>
 <van-toast id="van-toast" />

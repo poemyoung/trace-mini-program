@@ -8,6 +8,12 @@
     position: absolute;
     right: 2em;
 }
+.loading-class {
+  position: absolute;
+  top:30%;
+  left: 45%;
+  z-index: 5;
+}
 .cell-container{
   display: flex;
   flex-direction: row;

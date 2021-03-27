@@ -9,8 +9,9 @@
   <view class="up-container">
     <view style="padding-top:7vh">
       <van-row>
-        <van-col span="24" >
-          <van-notice-bar background="white;" color="blue" left-icon="volume-o" text="{{notice_text}}" custom-class="bar" />
+        <van-col span="24">
+          <van-notice-bar background="white;" color="blue" left-icon="volume-o" text="{{notice_text}}"
+            custom-class="bar" />
         </van-col>
       </van-row>
     </view>
@@ -23,38 +24,35 @@
       </van-col>
       <van-col span="8">
         <view class="flex-container">
-          <van-icon name="qr" color="white" size="100rpx" class="top-icon-container" 
-          bind:click="healthyCode"/>
+          <van-icon name="qr" color="white" size="100rpx" class="top-icon-container" bind:click="healthyCode" />
           <text class="up-text">健康码</text>
         </view>
       </van-col>
       <van-col span="8">
         <view class="flex-container">
-          <van-icon name="qr-invalid" color="white" size="100rpx" class="top-icon-container" 
-          bind:click="staticCode"/>
+          <van-icon name="qr-invalid" color="white" size="100rpx" class="top-icon-container" bind:click="staticCode" />
           <text class="up-text">静态码</text>
         </view>
       </van-col>
     </van-row>
   </view>
-  
+
   <!-- 中间可扩展内容层 -->
   <view>
     <van-panel use-footer-slot custom-class="panel-class">
       <view slot="footer">
         <van-grid clickable border="{{false}}" column-num="3">
-          <van-grid-item icon-color="blue" icon="description" color="blue" text="提交工单" 
-          bind:click="workSys"/>
-          <van-grid-item icon-color="purple" icon="https://www.poemyoung.xyz/icons/popularize.png" text="肺炎科普" bind:click="popularize"/>
-          <van-grid-item icon-color="green" icon="records" text="健康申报" 
-          bind:click="report"/>
-          <van-grid-item icon-color="red" icon="location-o" text="查风险地区" 
-          bind:click="checkHighRisk"/>
-          <van-grid-item icon-color="chocolate" icon="newspaper-o" text="看疫情新闻" 
-          bind:click="checkNews"/>
-          <van-grid-item icon-color="aquamarine" icon="https://www.poemyoung.xyz/icons/gov.png" text="查疫情政策" bind:click="checkPolicy"/>
-          <van-grid-item icon-color="darkcyan" icon="https://www.poemyoung.xyz/icons/thread.png" text="疫情线索上报" bind:click="threadUp"/>
-          <van-grid-item icon-color="lightsalmon" icon="aim" text="主动定位" bind:click="locateClick"/>
+          <van-grid-item icon-color="blue" icon="description" color="blue" text="提交工单" bind:click="workSys" />
+          <van-grid-item icon-color="purple" icon="https://www.poemyoung.xyz/icons/popularize.png" text="肺炎科普"
+            bind:click="popularize" />
+          <van-grid-item icon-color="green" icon="records" text="健康申报" bind:click="report" />
+          <van-grid-item icon-color="red" icon="location-o" text="查风险地区" bind:click="checkHighRisk" />
+          <van-grid-item icon-color="chocolate" icon="newspaper-o" text="看疫情新闻" bind:click="checkNews" />
+          <van-grid-item icon-color="aquamarine" icon="https://www.poemyoung.xyz/icons/gov.png" text="查疫情政策"
+            bind:click="checkPolicy" />
+          <van-grid-item icon-color="darkcyan" icon="https://www.poemyoung.xyz/icons/thread.png" text="疫情线索上报"
+            bind:click="threadUp" />
+          <van-grid-item icon-color="lightsalmon" icon="aim" text="主动定位" bind:click="locateClick" />
         </van-grid>
       </view>
     </van-panel>

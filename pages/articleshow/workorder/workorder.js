@@ -1,6 +1,7 @@
 // pages/articleshow/workorder/workorder.js
 import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast'
 import util from '../../../utils/util'
+import ArticleReq from '../../../api/article_req'
 const app = getApp()
 Page({
 
@@ -17,12 +18,75 @@ Page({
     eva: 0,
     rate: 0,
     new_content:'',
-    imgList:[]
+    imgList:[],
+    show:false
+  },
+  submitWorkOrder: function (imgIDs) {
+    let _this = this;
+    wx.request({
+      url: app.globalData.urlBase + app.globalData.urlMap.new_reply,
+      method: 'POST',
+      data: {
+        aid : _this.data.aid,
+        headLine : _this.data.headLine,
+        content : _this.data.new_content,
+        imagePaths : imgIDs
+      },
+      success:function(res) {
+        if(res.data.code == 1) {
+          Toast.success("成功！")
+          wx.redirectTo({
+            url: '../workorder/workorder',
+          })
+        }else{
+          Toast.fail("服务器错误！")
+        }
+      },
+      fail:function(res) {
+        Toast.fail("服务器错误！")
+      }
+    })
+  },
+
+  upToCloud: function () {
+    this.setData({
+      show : true
+    })
+    wx.cloud.init();
+    const images = this.data.imgList;
+    let _this = this;
+    if (!images.length) {
+      this.submitWorkOrder([]);
+    } else {
+      const tasks = images.map((file, index) => {
+        return wx.cloud.uploadFile({
+          cloudPath: ArticleReq.uuid() + '.png',
+          filePath: file.url
+        })
+      });
+
+      Promise.all(tasks)
+        .then((res) => {
+          var tmp = [];
+          res.map((sRes, index) => {
+            console.log(sRes)
+            if (sRes.statusCode == 204) {
+              let fid = sRes.fileID;
+              tmp.push(fid);
+            } else {
+              Toast.fail("图片上传失败！")
+            }
+          })
+          _this.submitWorkOrder(tmp);
+        })
+        .catch((res) => {
+          Toast.fail("图片上传失败！")
+        })
+    }
   },
   afterRead: function (event) {
     const imgs = event.detail.file;
     imgs.map((img,index) => {
-      console.log(img)
       let imgObj = {};
       imgObj.url = img.url;
       imgObj.deletable = true
@@ -33,11 +97,9 @@ Page({
         imgList: fl
       })
     })
-   
   },
   newReply:function(event) {
-    console.log(this.data.new_content);
-    console.log(this.data.imgList);
+    this.upToCloud();
   },
   endWO: function(event) {
     let _this = this;
@@ -84,7 +146,7 @@ Page({
     wx.cloud.init();
     // 发起请求获取文章详细信息
     wx.request({
-      url: app.globalData.urlBase + app.globalData.urlMap.article_detail + "?aid=" + 2,
+      url: app.globalData.urlBase + app.globalData.urlMap.article_detail + "?aid=" + aid,
       success: function (res) {
         if (res.data.code == 1) {
           let wo = res.data.data;
