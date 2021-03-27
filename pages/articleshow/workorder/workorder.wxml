@@ -1,4 +1,6 @@
 <!--pages/articleshow/workorder/workorder.wxml-->
+<van-skeleton loading="{{sken}}" row="30" title >
+  <view style="background-color:#f0f3f6;">
 <sticky>
   <van-overlay show="{{ show }}">
     <van-loading custom-class="loading-class" vertical color="#1989fa" style="spinner" text-size="18">上传中...
@@ -101,3 +103,5 @@
 <van-popup show="{{ isPop }}" z-index="{{5}}" bind:click-overlay="popClose">
   <van-image width="750rpx" height="750rpx" fit="cover"  src="{{popImage}}" bind:click="popClose"/>
 </van-popup>
+</view>
+</van-skeleton>

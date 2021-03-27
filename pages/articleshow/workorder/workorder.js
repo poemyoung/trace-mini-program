@@ -17,23 +17,24 @@ Page({
     aid: '',
     eva: 0,
     rate: 0,
-    new_content:'',
-    imgList:[],
-    show:false,
-    isPop:false,
-    popImage:''
+    new_content: '',
+    imgList: [],
+    show: false,
+    isPop: false,
+    popImage: '',
+    sken: true
   },
-  pop:function(event) {
+  pop: function (event) {
     let img_src = event.currentTarget.dataset.src;
     console.log(img_src)
     this.setData({
-      isPop:true,
+      isPop: true,
       popImage: img_src
     })
   },
-  popClose:function(event) {
+  popClose: function (event) {
     this.setData({
-      isPop:false
+      isPop: false
     })
   },
   submitWorkOrder: function (imgIDs) {
@@ -42,22 +43,22 @@ Page({
       url: app.globalData.urlBase + app.globalData.urlMap.new_reply,
       method: 'POST',
       data: {
-        aid : _this.data.aid,
-        headLine : _this.data.headLine,
-        content : _this.data.new_content,
-        imagePaths : imgIDs
+        aid: _this.data.aid,
+        headLine: _this.data.headLine,
+        content: _this.data.new_content,
+        imagePaths: imgIDs
       },
-      success:function(res) {
-        if(res.data.code == 1) {
+      success: function (res) {
+        if (res.data.code == 1) {
           Toast.success("成功！")
           wx.redirectTo({
             url: '../workorder/workorder?aid=' + _this.data.aid,
           })
-        }else{
+        } else {
           Toast.fail("服务器错误！")
         }
       },
-      fail:function(res) {
+      fail: function (res) {
         Toast.fail("服务器错误！")
       }
     })
@@ -65,7 +66,7 @@ Page({
 
   upToCloud: function () {
     this.setData({
-      show : true
+      show: true
     })
     wx.cloud.init();
     const images = this.data.imgList;
@@ -101,7 +102,7 @@ Page({
   },
   afterRead: function (event) {
     const imgs = event.detail.file;
-    imgs.map((img,index) => {
+    imgs.map((img, index) => {
       let imgObj = {};
       imgObj.url = img.url;
       imgObj.deletable = true
@@ -113,34 +114,34 @@ Page({
       })
     })
   },
-  newReply:function(event) {
+  newReply: function (event) {
     this.upToCloud();
   },
-  endWO: function(event) {
+  endWO: function (event) {
     let _this = this;
-      wx.request({
-        url: app.globalData.urlBase + app.globalData.urlMap.end_work_order,
-        method:'POST',
-        data:{
-          aid : _this.data.aid,
-          eva : _this.data.rate
-        },
-        success: function(event) {
-          wx.navigateBack({
-            delta: 1,
-          })
-        },
-        fail:function(event){
-          console.log(event)
-            Toast.fail("服务器错误！")
-        }
-      })
+    wx.request({
+      url: app.globalData.urlBase + app.globalData.urlMap.end_work_order,
+      method: 'POST',
+      data: {
+        aid: _this.data.aid,
+        eva: _this.data.rate
+      },
+      success: function (event) {
+        wx.navigateBack({
+          delta: 1,
+        })
+      },
+      fail: function (event) {
+        console.log(event)
+        Toast.fail("服务器错误！")
+      }
+    })
   },
-  rateChange:function(event) {
-      const rate  =event.detail;
-      this.setData({
-        rate : rate
-      })
+  rateChange: function (event) {
+    const rate = event.detail;
+    this.setData({
+      rate: rate
+    })
   },
 
   downLoadImages: function (images) {
@@ -192,17 +193,26 @@ Page({
               })
             } else {
               // 下载
+
               _this.downLoadImages(workorder.images)
                 .then((res) => {
                   // 建立数组
-                  const arr = res.map((img,index) => {
+                  const arr = res.map((img, index) => {
                     if (img.statusCode == 200) {
                       return img.tempFilePath;
                     }
                   })
                   workorder.images = arr;
+
+                })
+                .then((res) => {
                   _this.setData({
-                    wos : wo.wos
+                    wos: wo.wos
+                  })
+                })
+                .then((res) => {
+                  _this.setData({
+                    sken: false
                   })
                 })
                 .catch((res) => {
@@ -215,7 +225,7 @@ Page({
         }
       },
       fail: function (res) {
-        
+
         Toast.fail("服务器错误！");
       }
     })

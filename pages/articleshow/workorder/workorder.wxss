@@ -38,6 +38,10 @@
 .submit-container{
   margin-top: 1em;
 }
+.skeleton-container{
+  color: white;
+}
 Page{
-  background-color: #f0f3f6;
+ /* background-color: #f0f3f6;*/
+ background-color: white;
 }
