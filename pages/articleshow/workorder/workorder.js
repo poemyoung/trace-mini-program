@@ -21,13 +21,14 @@ Page({
     imgList:[],
     show:false,
     isPop:false,
-    popImage:'https://img.yzcdn.cn/vant/cat.jpeg'
+    popImage:''
   },
   pop:function(event) {
     let img_src = event.currentTarget.dataset.src;
     console.log(img_src)
     this.setData({
-      isPop:true
+      isPop:true,
+      popImage: img_src
     })
   },
   popClose:function(event) {
@@ -200,15 +201,14 @@ Page({
                     }
                   })
                   workorder.images = arr;
-               
+                  _this.setData({
+                    wos : wo.wos
+                  })
                 })
                 .catch((res) => {
                   Toast.fail("图片下载失败")
                 })
             }
-          })
-          _this.setData({
-            wos: wo.wos
           })
         } else {
           Toast.fail("服务器错误！");
