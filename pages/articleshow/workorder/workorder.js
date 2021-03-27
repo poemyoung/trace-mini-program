@@ -19,7 +19,21 @@ Page({
     rate: 0,
     new_content:'',
     imgList:[],
-    show:false
+    show:false,
+    isPop:false,
+    popImage:'https://img.yzcdn.cn/vant/cat.jpeg'
+  },
+  pop:function(event) {
+    let img_src = event.currentTarget.dataset.src;
+    console.log(img_src)
+    this.setData({
+      isPop:true
+    })
+  },
+  popClose:function(event) {
+    this.setData({
+      isPop:false
+    })
   },
   submitWorkOrder: function (imgIDs) {
     let _this = this;
@@ -36,7 +50,7 @@ Page({
         if(res.data.code == 1) {
           Toast.success("成功！")
           wx.redirectTo({
-            url: '../workorder/workorder',
+            url: '../workorder/workorder?aid=' + _this.data.aid,
           })
         }else{
           Toast.fail("服务器错误！")
@@ -180,13 +194,13 @@ Page({
               _this.downLoadImages(workorder.images)
                 .then((res) => {
                   // 建立数组
-                  let arr = [];
-                  res.map((img) => {
-                    if (arr.statusCode == 200) {
-                      arr.push(img.tempFilePath);
+                  const arr = res.map((img,index) => {
+                    if (img.statusCode == 200) {
+                      return img.tempFilePath;
                     }
                   })
                   workorder.images = arr;
+               
                 })
                 .catch((res) => {
                   Toast.fail("图片下载失败")
@@ -201,6 +215,7 @@ Page({
         }
       },
       fail: function (res) {
+        
         Toast.fail("服务器错误！");
       }
     })

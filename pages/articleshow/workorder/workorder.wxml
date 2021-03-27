@@ -78,7 +78,7 @@
     </van-col>
   </van-row>
   <view wx:for="{{item.images}}" wx:for-item="imgItem" wx:key="index" class="images-container">
-    <van-image width="6em" height="6em" src="{{imgItem}}" custom-class="aimg-container" show-menu-by-longpress />
+    <van-image width="6em" height="6em" src="{{imgItem}}" custom-class="aimg-container" show-menu-by-longpress bind:click="pop" data-src="{{imgItem}}"/>
   </view>
   <van-cell border="{{false}}">
     {{item.time}}
@@ -98,3 +98,6 @@
 </view>
 </view>
 <van-toast id="van-toast" />
+<van-popup show="{{ isPop }}" z-index="{{5}}" bind:click-overlay="popClose">
+  <van-image width="750rpx" height="750rpx" fit="cover"  src="{{popImage}}" bind:click="popClose"/>
+</van-popup>

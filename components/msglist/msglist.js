@@ -7,6 +7,10 @@ Component({
     articles:{
       type:Array,
       value:[]
+    },
+    desc:{
+      type:String,
+      value:'删除'
     }
   },
 

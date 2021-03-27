@@ -16,23 +16,23 @@
 <view style="display:{{headActive == 0 ? 'block' : 'none'}}" class="downtab-class" sticky>
   <van-tabs active="{{ woActive }}" bind:change="woChange" id="ts">
     <van-tab title="已处理">
-      <msg-list articles="{{handled}}"></msg-list>
+      <msg-list articles="{{handled}}" desc="{{desc}}"></msg-list>
     </van-tab>
     <van-tab title="未处理">
-      <msg-list articles="{{unhandle}}"></msg-list>
+      <msg-list articles="{{unhandle}}" desc="{{desc}}"></msg-list>
     </van-tab>
     <van-tab title="待我处理">
-      <msg-list articles="{{mehandle}}"></msg-list>
+      <msg-list articles="{{mehandle}}" desc="{{desc}}"></msg-list>
     </van-tab>
   </van-tabs>
 </view>
 <view style="display:{{headActive == 1 ? 'block' : 'none'}}" class="downtab-class" sticky swipeable>
   <van-tabs active="{{ msgActive }}" bind:change="msgChange">
     <van-tab title="已读">
-      <msg-list articles="{{readed}}"></msg-list>
+      <msg-list articles="{{readed}}" desc="{{desc}}"></msg-list>
     </van-tab>
     <van-tab title="未读">
-      <msg-list articles="{{unread}}"></msg-list>
+      <msg-list articles="{{unread}}" desc="{{desc}}"></msg-list>
     </van-tab>
   </van-tabs>
 </view>

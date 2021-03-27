@@ -10,3 +10,8 @@
 .content-class {
   font-weight: 300;
 }
+.time-class{
+  font-weight:400;
+  position: absolute;
+  right: 2em;
+}

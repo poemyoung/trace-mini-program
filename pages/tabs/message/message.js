@@ -13,7 +13,7 @@ Page({
     woActive: 0,
     msgActive: 1,
     headActive: 0,
-    desc: '',
+    desc: '删除',
     handled: [],
     unhandle: [],
     mehandle: [],
@@ -29,14 +29,12 @@ Page({
     let _this = this;
     this.setData({
       woActive: event.detail.index,
-      desc: _this.setDesc(0, event.detail.index)
     })
   },
   msgChange: function (event) {
     let _this = this;
     this.setData({
       msgActive: event.detail.index,
-      desc: _this.setDesc(1, event.detail.index)
     })
   },
   headChange: function (event) {
@@ -70,30 +68,6 @@ Page({
         })
     }
   },
-  setDesc: function (upIdx, downIdx) {
-    if (upIdx == 0) {
-      switch (downIdx) {
-        case 0:
-          return '删除';
-        case 1:
-          return '退单';
-        case 2:
-          return '结单';
-        default:
-          return '删除'
-      }
-    } else {
-      switch (downIdx) {
-        case 0:
-          return '删除'
-        case 1:
-          return '已读'
-        default:
-          return '删除'
-      }
-    }
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -186,9 +160,6 @@ Page({
       fail: function (res) {
         Toast.fail(res.data);
       }
-    })
-    this.setData({
-      desc: '删除'
     })
   },
 

@@ -17,11 +17,6 @@
   text-align: center;
   background-color: #f44;
 }
-.time-class{
-  font-weight:400;
-  position: absolute;
-  right: 2em;
-}
 .display-class {
   margin-top: 20rpx;
 }
