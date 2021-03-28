@@ -22,7 +22,7 @@ Page({
     show: false,
     isPop: false,
     popImage: '',
-    sken: true
+    sken: false
   },
   pop: function (event) {
     let img_src = event.currentTarget.dataset.src;
@@ -145,6 +145,9 @@ Page({
   },
 
   downLoadImages: function (images) {
+    this.setData({
+      sken:true
+    })
     const down = images.map((image, index) => {
       return wx.cloud.downloadFile({
         fileID: image
@@ -188,12 +191,12 @@ Page({
             // 处理所有image然后重新设置images
             if (workorder.whom = false) {
               // 管理员
+
               workorder.images.map((img, index) => {
                 workorder.images[index] = baseUrl + img;
               })
             } else {
               // 下载
-
               _this.downLoadImages(workorder.images)
                 .then((res) => {
                   // 建立数组
@@ -203,7 +206,6 @@ Page({
                     }
                   })
                   workorder.images = arr;
-
                 })
                 .then((res) => {
                   _this.setData({
@@ -211,11 +213,15 @@ Page({
                   })
                 })
                 .then((res) => {
+                  console.log("cache")
                   _this.setData({
                     sken: false
                   })
                 })
                 .catch((res) => {
+                  _this.setData({
+                    sken: false
+                  })
                   Toast.fail("图片下载失败")
                 })
             }
@@ -225,7 +231,6 @@ Page({
         }
       },
       fail: function (res) {
-
         Toast.fail("服务器错误！");
       }
     })
