@@ -1,3 +1,6 @@
+const app = getApp();
+var url = app.globalData.urlBase;
+var map = app.globalData.urlMap;
 const uuid = function() {
     var s = [];
     var hexDigits = "0123456789abcdef";
@@ -11,7 +14,26 @@ const uuid = function() {
     var uuid = s.join("");
     return uuid;
 }
+const delArticle = (aid,reso,rej) => {
+  // 删除文章，返回异步消息
+    wx.request({
+      url: url + map.del_wo + "?aid=" + aid,
+      success:function(res) {
+        if(res.data.code == 1) {
+          reso();
+        }else{
+          console.log("fail")
+          rej();
+        }
+      },
+      fail:function(res) {
+        console.log("fail")
+        rej();
+      }
+    })
+}
 
 module.exports = {
-  uuid : uuid
+  uuid : uuid,
+  delArticle : delArticle
 }

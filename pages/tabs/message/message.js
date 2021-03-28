@@ -20,6 +20,9 @@ Page({
     readed: [],
     unread: [],
   },
+  reShow:function(res) {
+      this.onShow();
+  },
   deal: function(event) {
     let aid = event.currentTarget.dataset.aid;
     let type = event.currentTarget.dataset.type;

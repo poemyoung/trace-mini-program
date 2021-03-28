@@ -1,5 +1,5 @@
 <!--pages/components/msglist/msglist.wxml-->
-<view wx:for="{{articles}}" wx:key="id">
+<view wx:for="{{articles}}" wx:key="id" style="display:{{show ? 'block' : 'none'}}">
     <van-swipe-cell right-width="{{ 65 }}" async-close>
       <van-cell-group>
         <van-cell size="large" custom-class="cell-class" is-link bind:click="checkDetail"
@@ -13,6 +13,7 @@
           </view>
         </van-cell>
       </van-cell-group>
-      <view slot="right" data-type="{{desc}}" data-aid="{{item.id}}" bindtap="deal">{{desc}}</view>
+      <view slot="right" data-type="{{desc}}" data-aid="{{item.id}}" bindtap="deal"
+       bindtap="del" data-aid="{{item.id}}">{{desc}}</view>
     </van-swipe-cell>
   </view>

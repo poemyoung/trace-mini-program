@@ -19,12 +19,17 @@ Page({
     })
   },
   submit: function () {
+    if(this.data.headline.length < 4){
+      Toast.fail("标题长度至少4位");
+      return;
+    }
     this.setData({
       show: true
     })
     this.upToCloud();
   },
   submitWorkOrder: function (imgIDs) {
+    // 参数校验
     let _this = this;
     wx.getStorage({
       key: 'userId',
