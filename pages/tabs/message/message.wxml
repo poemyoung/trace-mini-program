@@ -17,12 +17,15 @@
   <van-tabs active="{{ woActive }}" bind:change="woChange" id="ts">
     <van-tab title="已处理">
       <msg-list articles="{{handled}}" desc="{{desc}}"></msg-list>
+      <van-empty style="display:{{handled.length == 0 ? 'block' : 'none'}}"  description="无内容" />
     </van-tab>
     <van-tab title="未处理">
       <msg-list articles="{{unhandle}}" desc="{{desc}}"></msg-list>
+      <van-empty style="display:{{unhandle.length == 0 ? 'block' : 'none'}}"  description="无内容" />
     </van-tab>
     <van-tab title="待我处理">
       <msg-list articles="{{mehandle}}" desc="{{desc}}"></msg-list>
+      <van-empty style="display:{{mehandle.length == 0 ? 'block' : 'none'}}" description="无内容" />
     </van-tab>
   </van-tabs>
 </view>
@@ -30,9 +33,11 @@
   <van-tabs active="{{ msgActive }}" bind:change="msgChange">
     <van-tab title="已读">
       <msg-list articles="{{readed}}" desc="{{desc}}"></msg-list>
+      <van-empty style="display:{{readed.length == 0 ? 'block' : 'none'}}" description="无内容" />
     </van-tab>
     <van-tab title="未读">
       <msg-list articles="{{unread}}" desc="{{desc}}"></msg-list>
+      <van-empty style="display:{{unread.length == 0 ? 'block' : 'none'}}" description="无内容" />
     </van-tab>
   </van-tabs>
 </view>
