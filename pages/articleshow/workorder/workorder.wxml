@@ -90,7 +90,7 @@
 
 <view style = "display:{{status_desc == '已结单' ? 'none' : 'block'}}">
 <van-divider contentPosition="center" textColor="#1989fa" borderColor="#1989fa">继续回复</van-divider>
-<view style="background-color:white">
+<view style="background-color:white;margin-bottom:3em">
   <van-cell-group custom-class="ipt-container" border="{{false}}">
     <van-field model:value="{{ new_content }}" placeholder="请输入内容（最多500字）" maxlength="{{500}}" show-word-limit autosize
       type="textarea" border="{{false}}" size="large" />

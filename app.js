@@ -56,7 +56,8 @@ App({
       article_detail:"/miniapi/singlewo",
       end_work_order:"/miniapi/endwo",
       new_reply:"/miniapi/newreply",
-      del_wo: "/miniapi/delarticle"
+      del_wo: "/miniapi/delarticle",
+      del_img:"/miniapi/delImgs"
     }
   },
   getUserInfo : function(data) {

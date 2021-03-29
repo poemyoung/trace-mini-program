@@ -83,7 +83,6 @@ Page({
         .then((res) => {
           var tmp = [];
           res.map((sRes, index) => {
-            console.log(sRes)
             if (sRes.statusCode == 204) {
               let fid = sRes.fileID;
               tmp.push(fid);
