@@ -24,6 +24,17 @@ Page({
     popImage: '',
     sken: false
   },
+  deleteImg: function(event) {
+    const imgDel = event.detail;
+    let index = imgDel.index;
+    let arrTmp = this.data.imgList;
+    arrTmp.splice(
+      index, 1
+    )
+    this.setData({
+      imgList: arrTmp
+    })
+  },
   pop: function (event) {
     let img_src = event.currentTarget.dataset.src;
     console.log(img_src)
@@ -189,9 +200,8 @@ Page({
           wo.wos.map((workorder, index) => {
             workorder.time = util.formatTimeNoSec(new Date(workorder.time));
             // 处理所有image然后重新设置images
-            if (workorder.whom = false) {
+            if (workorder.whom == false) {
               // 管理员
-
               workorder.images.map((img, index) => {
                 workorder.images[index] = baseUrl + img;
               })
@@ -213,7 +223,6 @@ Page({
                   })
                 })
                 .then((res) => {
-                  console.log("cache")
                   _this.setData({
                     sken: false
                   })
