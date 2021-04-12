@@ -15,7 +15,6 @@
     "pages/ckhigh/ckhighidx/ckhighidx",
     "pages/cknews/cknewsidx/cknewsidx",
     "pages/ckpolicy/ckpolicyidx/ckpolicyidx",
-    "pages/threadup/tdupidx/tdupidx",
     "pages/scodemag/add/add",
     "pages/scodemag/fill/fill",
     "pages/articleshow/article/article"
@@ -67,7 +66,9 @@
     "van-tabs": "@vant/weapp/tabs/index",
     "van-swipe-cell": "@vant/weapp/swipe-cell/index",
     "van-rate": "@vant/weapp/rate/index",
-    "van-skeleton": "@vant/weapp/skeleton/index"
+    "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-sidebar": "@vant/weapp/sidebar/index",
+    "van-sidebar-item": "@vant/weapp/sidebar-item/index"
   },
   "requiredBackgroundModes": [
     "location"

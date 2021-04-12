@@ -37,7 +37,7 @@ App({
   globalData: {
     userInfo: null,
     userId: "",
-    urlBase: "https://www.poemyoung.xyz",
+    urlBase: "https://localhost:443",
     urlMap:{
       login : "/miniapi/login",
       userinfofill : "/miniapi/isfill",
@@ -57,7 +57,8 @@ App({
       end_work_order:"/miniapi/endwo",
       new_reply:"/miniapi/newreply",
       del_wo: "/miniapi/delarticle",
-      del_img:"/miniapi/delImgs"
+      del_img:"/miniapi/delImgs",
+      pop:"/miniapi/popall"
     }
   },
   getUserInfo : function(data) {

@@ -1,1 +1,16 @@
 /* pages/pop/popidx/popidx.wxss */
+.out-class {
+  margin: 20rpx 5rpx 10rpx 5rpx;
+  text-align: center;
+}
+.head-class {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+.content-class{
+  text-align: left;
+  font-weight: 300;
+}
+.panel-class {
+  margin-top: 10rpx;
+}

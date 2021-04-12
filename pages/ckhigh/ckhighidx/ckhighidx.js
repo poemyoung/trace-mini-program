@@ -5,9 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+     places:{
+       high:['四川','四川'],
+       medium:['重庆','重庆'],
+     },
+     activeKey:0,
+     time:'2020-09-20'
   },
-
+  onChange(event) {
+    this.setData({
+      activeKey:event.detail
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

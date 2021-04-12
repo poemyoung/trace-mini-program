@@ -50,8 +50,6 @@
           <van-grid-item icon-color="chocolate" icon="newspaper-o" text="看疫情新闻" bind:click="checkNews" />
           <van-grid-item icon-color="aquamarine" icon="https://www.poemyoung.xyz/icons/gov.png" text="查疫情政策"
             bind:click="checkPolicy" />
-          <van-grid-item icon-color="darkcyan" icon="https://www.poemyoung.xyz/icons/thread.png" text="疫情线索上报"
-            bind:click="threadUp" />
           <van-grid-item icon-color="lightsalmon" icon="aim" text="主动定位" bind:click="locateClick" />
         </van-grid>
       </view>

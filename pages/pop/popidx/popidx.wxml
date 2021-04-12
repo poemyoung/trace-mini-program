@@ -1,2 +1,9 @@
 <!--pages/pop/popidx/popidx.wxml-->
-<text>pages/pop/popidx/popidx.wxml</text>
+<view wx:for="{{contents}}" wx:key="headline" class="out-class">
+  <van-panel use-footer-slot class="panel-class">
+  <rich-text class="head-class">{{item.headline}}</rich-text>
+  <view slot="footer">
+    <view class="content-class">{{item.content}}</view>
+  </view>
+</van-panel>
+</view>
