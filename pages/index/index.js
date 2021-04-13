@@ -12,6 +12,18 @@ Page({
     active : 0,
     notice_text : "在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
   },
+  // 冷链查询
+  ccfind:function() {
+      wx.navigateTo({
+        url: '../cold/chainfind/chainfind',
+      })
+  },
+  // 冷链上报点击
+  ccup:function() {
+      wx.navigateTo({
+        url: '../cold/chainup/chainup',
+      })
+  },
   // 主动定位点击
   locateClick : function(event) {
     let _this = this;

@@ -1,0 +1,33 @@
+<!--pages/cold/chainup/chainup.wxml-->
+<view class="head-container">
+  <text>冷链货物源信息上报</text>
+</view>
+
+<van-cell-group custom-class="fill-class">
+  <van-field
+    value="{{ company }}"
+    required
+    clearable
+    label="货源地"
+    placeholder="冷链货物出厂的生产厂商或者货源地"
+    bind:click-icon="onClickIcon"
+  />
+  <van-cell title="货物分类" value="{{classChoose}}" is-link bind:click="showPopup" />
+  <van-popup show="{{ show }}" bind:close="onClose"  position="bottom">
+    <van-picker columns="{{ classall }}" bind:change="pickerChange" show-toolbar="{{true}}"
+    bind:confirm="confirmClass" bind:cancel="cancelClass"/>
+  </van-popup>
+  <van-field
+    value="{{ remark }}"
+    clearable
+    label="备注"
+    type="textarea"
+    placeholder="其它备注"
+    bind:click-icon="onClickIcon"
+  />
+</van-cell-group>
+<van-button plain hairline type="primary" custom-class="btn" bind:click="generate">生成货物源二维码</van-button>
+
+<view style="display:{{qr ? 'block' : 'none'}};text-align:center">
+  <van-image width="20rem" height="20rem" fit="contain" src="https://img.yzcdn.cn/vant/cat.jpeg" show-menu-by-longpress />
+</view>

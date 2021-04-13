@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/cold/chainup/chainup",
     "pages/index/index",
     "pages/articleshow/workorder/workorder",
     "pages/tabs/message/message",
@@ -15,7 +16,9 @@
     "pages/ckpolicy/ckpolicyidx/ckpolicyidx",
     "pages/scodemag/add/add",
     "pages/scodemag/fill/fill",
-    "pages/articleshow/article/article"
+    "pages/articleshow/article/article",
+
+    "pages/cold/chainfind/chainfind"
   ],
   "permission": {
     "scope.userLocation": {
