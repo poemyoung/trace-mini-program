@@ -58,7 +58,8 @@ App({
       new_reply:"/miniapi/newreply",
       del_wo: "/miniapi/delarticle",
       del_img:"/miniapi/delImgs",
-      pop:"/miniapi/popall"
+      pop:"/miniapi/popall",
+      chain_up:"/miniapi/upchain"
     }
   },
   getUserInfo : function(data) {

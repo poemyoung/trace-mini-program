@@ -5,7 +5,7 @@
 
 <van-cell-group custom-class="fill-class">
   <van-field
-    value="{{ company }}"
+    model:value="{{ company }}"
     required
     clearable
     label="货源地"
@@ -18,7 +18,7 @@
     bind:confirm="confirmClass" bind:cancel="cancelClass"/>
   </van-popup>
   <van-field
-    value="{{ remark }}"
+  model:value="{{ remark }}"
     clearable
     label="备注"
     type="textarea"
@@ -28,6 +28,7 @@
 </van-cell-group>
 <van-button plain hairline type="primary" custom-class="btn" bind:click="generate">生成货物源二维码</van-button>
 
-<view style="display:{{qr ? 'block' : 'none'}};text-align:center">
-  <van-image width="20rem" height="20rem" fit="contain" src="https://img.yzcdn.cn/vant/cat.jpeg" show-menu-by-longpress />
+<view style="display:{{qr ? 'block' : 'none'}};text-align:center;margin-top:20px">
+  <van-image width="17rem" height="17rem" fit="contain" src="{{qrPath}}" show-menu-by-longpress />
 </view>
+<van-toast id="van-toast" />

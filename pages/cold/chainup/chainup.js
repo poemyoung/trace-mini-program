@@ -1,4 +1,6 @@
 // pages/cold/chainup/chainup.js
+const app = getApp()
+import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast'
 Page({
 
   /**
@@ -11,10 +13,39 @@ Page({
       classall:['医药','餐饮连锁','快消品','乳制品','米面','禽肉','水产','果蔬农产品','其它'],
       show:false,
       classChoose:'',
-      qr:true
+      qr:false,
+      qrPath:'',
   },
   generate:function() {
-      console.log("hh")
+    let _this = this;
+      wx.request({
+        url: app.globalData.urlBase + app.globalData.urlMap.chain_up,
+        header : {
+          'content-type': 'application/json'
+        },
+        method:'POST',
+        data:{
+          remark:_this.data.remark,
+          classify:_this.data.classChoose,
+          company:_this.data.company
+        },
+        success:function(res) {
+          console.log(res);
+          if(res.data.code == 1) {
+            let p = app.globalData.urlBase + res.data.data;
+            console.log(p);
+              _this.setData({
+                qr:true,
+                qrPath:p
+              })
+          }else{
+            Toast.fail("参数有误！")
+          }
+        },
+        fail:function(res) {
+            Toast.fail("服务器错误")
+        }
+      })
   },
   cancelClass:function(event) {
       this.setData({
