@@ -2,8 +2,7 @@
 <view>
   <van-tabbar active="{{ active }}" bind:change="tabChange">
     <van-tabbar-item icon="home-o">首页</van-tabbar-item>
-    <van-tabbar-item icon="chat-o">消息/工单</van-tabbar-item>
-    <van-tabbar-item icon="friends-o">我的</van-tabbar-item>
+    <van-tabbar-item icon="chat-o">工单</van-tabbar-item>
   </van-tabbar>
   <!-- 纯色或图片占位 -->
   <view class="up-container">
@@ -46,10 +45,8 @@
           <van-grid-item icon-color="purple" icon="https://www.poemyoung.xyz/icons/popularize.png" text="肺炎科普"
             bind:click="popularize" />
           <van-grid-item icon-color="green" icon="records" text="健康申报" bind:click="report" />
-          <van-grid-item icon-color="red" icon="location-o" text="查风险地区" bind:click="checkHighRisk" />
-          <van-grid-item icon-color="chocolate" icon="newspaper-o" text="看疫情新闻" bind:click="checkNews" />
-          <van-grid-item icon-color="aquamarine" icon="https://www.poemyoung.xyz/icons/gov.png" text="查疫情政策"
-            bind:click="checkPolicy" />
+          <van-grid-item icon-color="green" icon="records" text="冷链查询" bind:click="report" />
+          <van-grid-item icon-color="green" icon="records" text="冷链上报" bind:click="report" />
           <van-grid-item icon-color="lightsalmon" icon="aim" text="主动定位" bind:click="locateClick" />
         </van-grid>
       </view>

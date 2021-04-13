@@ -50,24 +50,6 @@ Page({
       url: '../threadup/tdupidx/tdupidx',
     })
   },
-  //查疫情政策
-  checkPolicy : function(event) {
-      wx.navigateTo({
-        url: '../ckpolicy/ckpolicyidx/ckpolicyidx',
-      })
-  },
-  //看疫情新闻点击
-  checkNews : function(event) {
-    wx.navigateTo({
-      url: '../cknews/cknewsidx/cknewsidx',
-    })
-  },
-  //查风险地区点击
-  checkHighRisk : function(event) {
-      wx.navigateTo({
-        url: '../ckhigh/ckhighidx/ckhighidx',
-      })
-  },
   //健康申报点击
   report : function(event) {
     wx.navigateTo({

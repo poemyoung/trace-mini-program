@@ -1,9 +1,0 @@
-/* pages/ckhigh/ckhighidx/ckhighidx.wxss */
-
-.content-class{
-  margin: 2em 1em 1em 2em;
-}
-.shuom{
-  position: relative;
-  top: 550rpx;
-}
