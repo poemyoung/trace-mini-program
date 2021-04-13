@@ -1,2 +1,33 @@
 <!--pages/cold/chainfind/chainfind.wxml-->
-<text>pages/cold/chainfind/chainfind.wxml</text>
+<view id="head-view">
+  <van-button type="info" icon="scan" block bind:click="scanQr" custom-class="btn-scan">扫描货物源二维码</van-button>
+  <text class="txt-head">或 输入货物源编号</text>
+  <view class="inp-class">
+    <van-row>
+      <van-col span="18">
+        <van-field model:value="{{ code }}" placeholder="请输入货物源编号" border="{{ false }}" bind:change="codeChange" />
+      </van-col>
+      <van-col span="6">
+        <van-button type="primary">查询</van-button>
+      </van-col>
+    </van-row>
+  </view>
+</view>
+
+<view style="background-color:white">
+<van-cell-group class="cell-group">
+  <van-cell title="货物源编号" border="{{false}}" />
+  <text class="txt-down">{{cargo.id}}</text>
+  <van-cell title="货源地" border="{{false}}" />
+  <text class="txt-down">{{cargo.source}}</text>
+  <van-cell title="分类" border="{{false}}" />
+  <text class="txt-down">{{cargo.class}}</text>
+  <van-cell title="备注" border="{{false}}" />
+  <text class="txt-down">{{cargo.remark}}</text>
+  <van-cell title="途经地" border="{{false}}" />
+  <view wx:for="{{cargo.places}}" wx:key="index">
+    <text class="txt-down">{{item}}</text>
+  </view>
+</van-cell-group>
+</view>
+<button type="primary" block class="downbtn">货物定位报备</button>

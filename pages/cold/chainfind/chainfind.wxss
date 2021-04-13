@@ -1,1 +1,32 @@
 /* pages/cold/chainfind/chainfind.wxss */
+#head-view{
+  margin: 40px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.downbtn{
+  margin-top: 20px;
+}
+inp-class {
+  display: flex;
+  flex-direction: row;
+}
+.txt-down {
+  font-size: medium;
+  margin:0 2em 1em 1em;
+  color:gray
+}
+.txt-head{
+  font-size: larger;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+.btn-scan {
+  width: 15rem;
+  height: 15rem;
+}
+
+Page {
+background-color: #f6f7f9;
+}
