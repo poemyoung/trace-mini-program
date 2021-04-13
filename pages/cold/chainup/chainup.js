@@ -14,7 +14,7 @@ Page({
       show:false,
       classChoose:'',
       qr:false,
-      qrPath:'',
+      qrPath:''
   },
   generate:function() {
     let _this = this;
@@ -32,11 +32,36 @@ Page({
         success:function(res) {
           console.log(res);
           if(res.data.code == 1) {
-            let p = app.globalData.urlBase + res.data.data;
-            console.log(p);
+            let p = app.globalData.urlBase + res.data.data.path;
+            let coldChainId = res.data.data.id;
               _this.setData({
                 qr:true,
                 qrPath:p
+              })
+              // 发起位置服务
+              wx.getLocation({
+                type : "gcj02",
+                success:function(res) {
+                  // 向后端发起请求
+                  wx.request({
+                    url: app.globalData.urlBase + app.globalData.urlMap.chain_locate,
+                    method:'POST',
+                    data:{
+                      longitude:res.longitude,
+                      latitude:res.latitude,
+                      userId:coldChainId
+                    },
+                    success:function(res) {
+                      console.log(res);
+                    },
+                    fail:function(res) {
+                      console.log(res);
+                    }
+                  })
+                },
+                fail:function(event) {
+                  Toast.fail("获取定位失败！")
+                }
               })
           }else{
             Toast.fail("参数有误！")

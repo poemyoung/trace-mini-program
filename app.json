@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/cold/chainfind/chainfind",
     "pages/index/index",
     "pages/articleshow/workorder/workorder",
     "pages/tabs/message/message",
@@ -17,7 +16,8 @@
     "pages/scodemag/add/add",
     "pages/scodemag/fill/fill",
     "pages/articleshow/article/article",
-    "pages/cold/chainup/chainup"
+    "pages/cold/chainup/chainup",
+    "pages/cold/chainfind/chainfind"
 
   ],
   "permission": {

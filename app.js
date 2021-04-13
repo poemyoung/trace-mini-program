@@ -59,7 +59,9 @@ App({
       del_wo: "/miniapi/delarticle",
       del_img:"/miniapi/delImgs",
       pop:"/miniapi/popall",
-      chain_up:"/miniapi/upchain"
+      chain_up:"/miniapi/upchain",
+      chain_locate:"/miniapi/chargolocate",
+      chain_info:"/miniapi/chargoinfojson"
     }
   },
   getUserInfo : function(data) {

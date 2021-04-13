@@ -1,5 +1,6 @@
 // pages/cold/chainfind/chainfind.js
 import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast'
+const app = getApp()
 Page({
 
   /**
@@ -8,25 +9,40 @@ Page({
   data: {
     code :'',
     cargo:{
-      source:'四川省达州市渠县',
-      id:'123',
-      class:'医药',
-      remark:'无',
-      places:[
-        '四川省达州市渠县',
-        '四川省达州市宣汉县',
-        '四川省成都市双流区'
-      ]
-    }
+    },
+    show:false
+  },
+  chargoLocate:function(event) {
+      // 货物定位报备
+  },
+  findByCode:function(res) {
+      // 发起编码查找
   },
   scanQr:function() {
+    let _this = this;
       wx.scanCode({
         onlyFromCamera: true,
         scanType : ['qrCode'],
         success:function(res) {
-          console.log(res);
           let qr_res = res.result;
-         // 未完成 
+          let encodeString = encodeURIComponent(qr_res);
+         // 发送接口并解析 
+          wx.request({
+            url: app.globalData.urlBase + app.globalData.urlMap.chain_info + "?chargo=" + encodeString,
+            success:function(resl) {
+              if(resl.data.code == 1) {
+                  _this.setData({
+                    cargo:resl.data.data,
+                    show:true
+                  })
+              }else{
+                Toast.fail(resl.data.data.msg)
+              }
+            },
+            fail:function(resl) {
+              Toast.fail("服务器错误")
+            }
+          })
         },
         fail:function(res) {
             Toast.fail("扫码失败")
