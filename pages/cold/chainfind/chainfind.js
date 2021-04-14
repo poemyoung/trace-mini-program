@@ -12,7 +12,40 @@ Page({
     show: false
   },
   chargoLocate: function (event) {
+    console.log("???")
     // 货物定位报备
+    let _this = this;
+    let id = this.data.cargo.id;
+    // 发起位置服务
+    wx.getLocation({
+      type : "gcj02",
+      success:function(res) {
+        // 向后端发起请求
+        wx.request({
+          url: app.globalData.urlBase + app.globalData.urlMap.chain_locate,
+          method:'POST',
+          data:{
+            longitude:res.longitude,
+            latitude:res.latitude,
+            userId:id
+          },
+          success:function(res) {
+            console.log(res);
+            Toast.success("报备成功")
+          _this.setData({
+            code:id
+          })
+            _this.findByCode(id);
+          },
+          fail:function(res) {
+            console.log(res);
+          }
+        })
+      },
+      fail:function(event) {
+        Toast.fail("获取定位失败！")
+      }
+    })
   },
   findByCode: function (event) {
     // 发起编码查找

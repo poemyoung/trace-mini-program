@@ -17,8 +17,8 @@
     "pages/scodemag/fill/fill",
     "pages/articleshow/article/article",
     "pages/cold/chainup/chainup",
-    "pages/cold/chainfind/chainfind"
-
+    "pages/cold/chainfind/chainfind",
+    "pages/exiuserinfo/exiuserinfo"
   ],
   "permission": {
     "scope.userLocation": {

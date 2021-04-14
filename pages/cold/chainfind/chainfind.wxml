@@ -32,7 +32,8 @@
   <view wx:for="{{cargo.places}}" wx:key="index">
     <text class="txt-down">{{item}}</text>
   </view>
+  <van-button type="primary" block class="downbtn" bind:click="chargoLocate">货物定位报备</van-button>
 </van-cell-group>
-<button type="primary" block class="downbtn" bind:click="chargoLocate">货物定位报备</button>
+
 </view>
 <van-toast id="van-toast" />
