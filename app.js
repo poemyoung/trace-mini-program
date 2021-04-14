@@ -61,7 +61,8 @@ App({
       pop:"/miniapi/popall",
       chain_up:"/miniapi/upchain",
       chain_locate:"/miniapi/chargolocate",
-      chain_info:"/miniapi/chargoinfojson"
+      chain_info:"/miniapi/chargoinfojson",
+      chain_no:"/miniapi/chargono"
     }
   },
   getUserInfo : function(data) {

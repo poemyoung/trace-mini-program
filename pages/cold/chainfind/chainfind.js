@@ -7,49 +7,67 @@ Page({
    * 页面的初始数据
    */
   data: {
-    code :'',
-    cargo:{
-    },
-    show:false
+    code: '',
+    cargo: {},
+    show: false
   },
-  chargoLocate:function(event) {
-      // 货物定位报备
+  chargoLocate: function (event) {
+    // 货物定位报备
   },
-  findByCode:function(res) {
-      // 发起编码查找
-  },
-  scanQr:function() {
+  findByCode: function (event) {
+    // 发起编码查找
     let _this = this;
-      wx.scanCode({
-        onlyFromCamera: true,
-        scanType : ['qrCode'],
-        success:function(res) {
-          let qr_res = res.result;
-          let encodeString = encodeURIComponent(qr_res);
-         // 发送接口并解析 
-          wx.request({
-            url: app.globalData.urlBase + app.globalData.urlMap.chain_info + "?chargo=" + encodeString,
-            success:function(resl) {
-              if(resl.data.code == 1) {
-                  _this.setData({
-                    cargo:resl.data.data,
-                    show:true
-                  })
-              }else{
-                Toast.fail(resl.data.data.msg)
-              }
-            },
-            fail:function(resl) {
-              Toast.fail("服务器错误")
-            }
+    let code = this.data.code;
+    wx.request({
+      url: app.globalData.urlBase + app.globalData.urlMap.chain_no + "?code=" + code,
+      success: function (resl) {
+        console.log(resl)
+        if (resl.data.code == 1) {
+          _this.setData({
+            cargo: resl.data.data,
+            show: true
           })
-        },
-        fail:function(res) {
-            Toast.fail("扫码失败")
+        } else {
+          Toast.fail(resl.data.msg)
         }
-      })
+      },
+      fail: function (resl) {
+        Toast.fail("服务器错误")
+      }
+    })
   },
-  codeChange:function(event) {
+  scanQr: function () {
+    let _this = this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType: ['qrCode'],
+      success: function (res) {
+        let qr_res = res.result;
+        let encodeString = encodeURIComponent(qr_res);
+        // 发送接口并解析 
+        wx.request({
+          url: app.globalData.urlBase + app.globalData.urlMap.chain_info + "?chargo=" + encodeString,
+          success: function (resl) {
+            if (resl.data.code == 1) {
+              _this.setData({
+                cargo: resl.data.data,
+                show: true
+              })
+            } else {
+              Toast.fail(resl.data.data.msg)
+            }
+          },
+          fail: function (resl) {
+            Toast.fail("服务器错误")
+          }
+        })
+      },
+      fail: function (res) {
+        Toast.fail("扫码失败")
+      }
+    })
+  },
+  codeChange: function (event) {
     console.log(this.data.code);
   },
   /**

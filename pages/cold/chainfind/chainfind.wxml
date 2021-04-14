@@ -5,10 +5,10 @@
   <view class="inp-class">
     <van-row>
       <van-col span="18">
-        <van-field model:value="{{ code }}" placeholder="请输入货物源编号" border="{{ false }}" bind:click="findByCode" />
+        <van-field model:value="{{ code }}" placeholder="请输入货物源编号" border="{{ false }}"  />
       </van-col>
       <van-col span="6">
-        <van-button type="primary">查询</van-button>
+        <van-button type="primary" bind:click="findByCode">查询</van-button>
       </van-col>
     </van-row>
   </view>
@@ -35,3 +35,4 @@
 </van-cell-group>
 <button type="primary" block class="downbtn" bind:click="chargoLocate">货物定位报备</button>
 </view>
+<van-toast id="van-toast" />
