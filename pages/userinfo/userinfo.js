@@ -1,5 +1,6 @@
 // pages/userinfo/userinfo.js
 // 引入SDK核心类，js文件根据自己业务，位置可自行放置
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
 var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
 var qqmapsdk;
 const app = getApp();
@@ -64,6 +65,7 @@ Page({
       },
       success : function(res) {
         if(res.data.code == "1"){
+          Toast.success("填报成功！")
           wx.navigateTo({
             url: '../index/index',
           })
