@@ -62,7 +62,8 @@ App({
       chain_up:"/miniapi/upchain",
       chain_locate:"/miniapi/chargolocate",
       chain_info:"/miniapi/chargoinfojson",
-      chain_no:"/miniapi/chargono"
+      chain_no:"/miniapi/chargono",
+      exi_user_addr:"/miniapi/getaddrs"
     }
   },
   getUserInfo : function(data) {

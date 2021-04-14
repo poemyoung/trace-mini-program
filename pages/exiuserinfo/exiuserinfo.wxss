@@ -1,1 +1,5 @@
 /* pages/exiuserinfo/exiuserinfo.wxss */
+.table-head {
+  font-size: 1.3em;
+  color: brown;
+}

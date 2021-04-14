@@ -1,2 +1,18 @@
 <!--pages/exiuserinfo/exiuserinfo.wxml-->
-<text>pages/exiuserinfo/exiuserinfo.wxml</text>
+<view style="text-align:center;margin-top:40px">
+  <van-row class="table-head">
+    <van-col span="12">经过地</van-col>
+    <van-col span="12">时间</van-col>
+  </van-row>
+  <van-divider />
+  <van-empty style="display:{{places.length == 0 ? 'block' : 'none'}}" description="无记录" />
+  <view wx:for="{{places}}" wx:key="index">
+    <van-row>
+      <van-col span="12">{{item.place}}</van-col>
+      <van-col span="12">{{item.time}}</van-col>
+    </van-row>
+    <van-divider />
+  </view>
+  <view>
+  </view>
+</view>

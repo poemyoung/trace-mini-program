@@ -1,18 +1,35 @@
 // pages/exiuserinfo/exiuserinfo.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+      places:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let _this = this;
+     wx.getStorage({
+       key: 'userId',
+       success:function(res) {
+         let uid = encodeURIComponent(res.data);
+        wx.request({
+          url: app.globalData.urlBase + app.globalData.urlMap.exi_user_addr + "?userid="+uid,
+          success:function(res) {
+            if(res.data.code == 1) {
+                _this.setData({
+                  places:res.data.data
+                })
+            }
+          }
+        })
+       }
+     })
   },
 
   /**

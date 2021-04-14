@@ -48,6 +48,7 @@
           <van-grid-item icon-color="red" icon="cluster-o" text="冷链查询" bind:click="ccfind" />
           <van-grid-item icon-color="black" icon="hotel-o" text="冷链上报" bind:click="ccup" />
           <van-grid-item icon-color="lightsalmon" icon="aim" text="主动定位" bind:click="locateClick" />
+          <van-grid-item icon-color="#FF0088" icon="location-o" text="定位记录" bind:click="locRec" />
         </van-grid>
       </view>
     </van-panel>
